@@ -1,3 +1,5 @@
+import { ModeSwitcher } from "@/components/mode/mode-switcher";
+
 export function Footer() {
   return (
     <footer className="no-print border-t bg-muted/30">
@@ -9,10 +11,13 @@ export function Footer() {
             criterio clínico del profesional tratante, las características
             individuales del paciente y el tipo específico de fijación utilizada.
           </p>
-          <p className="text-xs text-muted-foreground/60">
-            REHAPP &copy; {new Date().getFullYear()} &middot; Protocolos de
-            Rehabilitación Postquirúrgica
-          </p>
+          <div className="flex items-center gap-4">
+            <p className="text-xs text-muted-foreground/60">
+              REHAPP &copy; {new Date().getFullYear()} &middot; Protocolos de
+              Rehabilitación Postquirúrgica
+            </p>
+            <ModeSwitcher />
+          </div>
         </div>
       </div>
     </footer>
