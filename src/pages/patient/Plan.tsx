@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Ban, Check, ChevronDown, Target } from "lucide-react";
+import { Ban, BookOpen, Check, ChevronDown, Target } from "lucide-react";
 import { BulletList, Card } from "../../components/ui";
 import ExerciseList from "../../components/ExerciseCard";
 import { dateAtWeek, formatDate } from "../../lib/config";
 import type { PatientCtx } from "../../lib/patient";
+import { refCount } from "../../lib/evidence";
 
 export default function Plan({ ctx }: { ctx: PatientCtx }) {
   const { config, proc, starts, phaseIdx, days } = ctx;
@@ -17,6 +18,15 @@ export default function Plan({ ctx }: { ctx: PatientCtx }) {
         <p className="mt-3 text-sm text-slate-500">
           Las fechas son orientativas. Cada persona se recupera a su ritmo y tu cirujano puede ajustarlas en las revisiones.
         </p>
+        {refCount(proc.id) > 0 && (
+          <a href="#/fuentes" className="mt-3 flex items-start gap-2 border-t border-slate-200 pt-3 text-sm text-slate-600">
+            <BookOpen className="mt-0.5 size-4 shrink-0 text-brand-700" />
+            <span>
+              Basado en {refCount(proc.id)} estudios científicos revisados en PubMed y en el criterio de tu cirujano.{" "}
+              <span className="font-semibold text-brand-700">Ver las fuentes</span>
+            </span>
+          </a>
+        )}
       </Card>
 
       <ol className="relative mt-5 space-y-3 border-l-2 border-brand-200 pl-5">

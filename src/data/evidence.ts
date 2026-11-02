@@ -835,7 +835,7 @@ export const EVIDENCE: Record<string, Evidence> = {
   general: {
     level: "baja",
     summary:
-      "Los consejos generales son correctos y prudentes. Que fumar retrasa la consolidación y aumenta la pseudoartrosis está bien respaldado. Ducharse a los 12-15 días es conservador: la evidencia aleatorizada sobre la ducha precoz es escasa y no concluyente, pero esperar no es inseguro.",
+      "Está bien demostrado que fumar retrasa la consolidación del hueso y aumenta el riesgo de que no suelde. Sobre cuándo ducharse hay pocos estudios y no son concluyentes: esperar a que la herida esté cerrada es la opción prudente.",
     gaps: [
       "Ducha precoz (24-48 h con apósito impermeable): un solo ensayo en cirugía menor, sin diferencia en infección; puede adelantarse a criterio del cirujano.",
     ],

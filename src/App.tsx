@@ -7,6 +7,7 @@ import { getProcedure } from "./data/procedures";
 import Welcome from "./pages/Welcome";
 import Surgeon from "./pages/Surgeon";
 import PatientApp from "./pages/patient/PatientApp";
+import Sources from "./pages/Sources";
 
 export default function App() {
   const route = useHashRoute();
@@ -25,6 +26,7 @@ export default function App() {
   if (route.startsWith("/p/") || route.startsWith("/c/")) return null;
 
   const proc = config ? getProcedure(config.p) : undefined;
+  if (route.startsWith("/fuentes")) return <Sources highlight={proc?.id} />;
   if (!config || !proc) return <Welcome onDemo={setConfig} />;
 
   return <PatientApp config={config} proc={proc} route={route} onReset={() => setConfig(null)} />;
