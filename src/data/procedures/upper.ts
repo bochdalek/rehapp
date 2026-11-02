@@ -11,7 +11,7 @@ export const upper: Procedure[] = [
     group: GROUP,
     limb: "superior",
     intro:
-      "Te han fijado la clavícula con una placa o un clavo. El hueso tarda unas 6-8 semanas en soldar. Mover el codo, la mano y, poco a poco, el hombro evita que se quede rígido.",
+      "Te han fijado la clavícula con una placa o un clavo. Hacia las 6-8 semanas el hueso suele estar lo bastante firme para ir cargando poco a poco, aunque en la radiografía puede tardar 3-4 meses en verse soldado del todo. Mover el codo, la mano y, poco a poco, el hombro evita que se quede rígido.",
     defaults: { device: "cabestrillo", deviceUntil: 2, noLiftUntil: 6 },
     phases: [
       {
@@ -67,7 +67,7 @@ export const upper: Procedure[] = [
     limb: "superior",
     intro:
       "Te han operado una fractura en la parte alta del húmero, junto al hombro. El hombro tiende a quedarse rígido, por eso es clave empezar pronto con movimientos suaves y sin fuerza.",
-    defaults: { device: "cabestrillo", deviceUntil: 3, noLiftUntil: 8 },
+    defaults: { device: "cabestrillo", deviceUntil: 3, noLiftUntil: 6 },
     phases: [
       {
         fromWeek: 0,
@@ -93,7 +93,7 @@ export const upper: Procedure[] = [
         summary: "Empiezas a mover el hombro con tu propia fuerza y a hacer ejercicios suaves de fuerza.",
         goals: ["Levantar el brazo sin ayuda", "Empezar a fortalecer sin peso"],
         allowed: ["Peinarte, vestirte y alcanzar estantes bajos", "Conducir cuando muevas bien el brazo"],
-        avoid: ["Pesos de más de 1-2 kg hasta que te lo indiquen"],
+        avoid: ["Pesos de más de 1-2 kg y golpes hasta los 3 meses, salvo que te indiquen otra cosa"],
         exercises: ["hombro-pared", "hombro-activo", "hombro-baston-rotacion", "hombro-isometrico", "escapulas"],
       },
       {
@@ -116,6 +116,7 @@ export const upper: Procedure[] = [
     intro:
       "Te han fijado la fractura del hueso del brazo (húmero) con una placa o un clavo. El hueso tarda unas 8-12 semanas en soldar. Mover hombro, codo y mano evita la rigidez.",
     defaults: { device: "cabestrillo", deviceUntil: 2, noLiftUntil: 8 },
+    warnings: ["No poder levantar la muñeca o los dedos, o tener dormido el dorso de la mano (posible lesión del nervio radial)"],
     phases: [
       {
         fromWeek: 0,
@@ -227,7 +228,8 @@ export const upper: Procedure[] = [
       {
         fromWeek: 2,
         title: "Mover la muñeca",
-        summary: "Sin férula (o solo para salir y dormir), empiezas a mover la muñeca.",
+        summary:
+          "Sin férula (o solo para salir y dormir), empiezas a mover la muñeca. Si no consigues cerrar el puño del todo o los dedos siguen muy hinchados y rígidos, díselo a tu cirujano: puede que te convenga fisioterapia supervisada.",
         goals: ["Recuperar el movimiento de la muñeca", "Girar la palma arriba y abajo"],
         allowed: ["Actividades ligeras: vestirte, asearte, escribir, cocinar cosas ligeras"],
         avoid: ["Cargar peso", "Apoyarte en la mano para levantarte"],

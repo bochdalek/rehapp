@@ -324,6 +324,7 @@ function Planner({ onLock }: { onLock: () => void }) {
                 </label>
               </div>
             </Step>
+            <EvidencePanel procId="general" title="Evidencia de los consejos generales" />
           </div>
 
           <aside className="lg:sticky lg:top-6 lg:self-start">

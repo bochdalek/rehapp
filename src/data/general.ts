@@ -86,7 +86,7 @@ export const GENERAL_FAQ: Faq[] = [
   },
   {
     q: "¿Hay que quitar la placa, el clavo o los tornillos?",
-    a: "Normalmente no. El material está preparado para quedarse dentro toda la vida. Solo se retira si da molestias o por algún motivo concreto, y se valora pasado al menos un año.",
+    a: "Las placas, clavos y tornillos normalmente no: están preparados para quedarse dentro toda la vida. Solo se retiran si dan molestias o por algún motivo concreto, y se valora pasado al menos un año. Las agujas que asoman por la piel y los fijadores externos sí se retiran, normalmente a las pocas semanas; mientras los lleves, mantén limpia la zona donde salen y avisa si se pone roja, supura o duele más.",
   },
   {
     q: "¿Pitará el material en los controles del aeropuerto?",
