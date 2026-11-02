@@ -35,13 +35,13 @@ export function alarms(limb: Limb, extra: string[] = []): AlarmLevel[] {
     },
     {
       level: "consulta",
-      title: "Llama a la consulta",
+      title: "Pide cita en tu centro de salud",
       items: [
         "La herida está algo enrojecida o sale líquido claro varios días después",
         "La férula, el vendaje o la bota te aprietan o te rozan",
         "La hinchazón aumenta en vez de ir bajando",
         "Fiebre de más de 38 °C sin otra causa",
-        "Tienes dudas sobre la medicación o los ejercicios",
+        "Tienes dudas sobre la medicación o los ejercicios (también puedes comentarlas en tu revisión)",
       ],
     },
   ];

@@ -10,7 +10,7 @@ Guía de recuperación para pacientes operados de **fracturas** y **prótesis de
 2. Se genera:
    - un **código corto** de 12 caracteres (p. ej. `28FW-0S8T-4CRA`) que el paciente escribe en la app;
      lleva intervención, fecha, lado, restricciones y fases;
-   - un **QR / enlace** completo, que además lleva nombre, indicaciones, revisión y teléfono;
+   - un **QR / enlace** completo, que además lleva nombre, indicaciones y revisión;
    - una **hoja imprimible** con ambos.
 
    No hay servidor ni base de datos: todo viaja dentro del código o del enlace.
@@ -18,13 +18,13 @@ Guía de recuperación para pacientes operados de **fracturas** y **prótesis de
    - **Hoy**: día y semana desde la cirugía, fase actual, si puede apoyar/cargar, ortesis, próxima revisión y ejercicios del día para marcar.
    - **Mi plan**: todas las fases con fechas, objetivos, qué puede y qué no puede hacer, y ejercicios.
    - **Mi dolor**: diario de dolor 0-10 con gráfica.
-   - **Ayuda**: señales de alarma (112 / Urgencias / consulta), teléfono del equipo y preguntas frecuentes.
+   - **Ayuda**: señales de alarma (112 / Urgencias / centro de salud) y preguntas frecuentes.
 
 Los datos del paciente se guardan solo en su dispositivo (`localStorage`). En ordenador la app usa menú lateral y dos columnas.
 
 ## Ajustes de la consulta
 
-- `src/data/clinic.ts`: nombre del equipo y teléfono que verán los pacientes que entren con código corto.
+- `src/data/clinic.ts`: nombre del equipo que verán los pacientes que entren con código corto.
 - Clave del modo médico: `node scripts/cambiar-clave.mjs "nueva-clave"`. Solo se guarda su huella.
 
 > La clave impide que un paciente entre por curiosidad en el modo médico, pero al no haber servidor no es
