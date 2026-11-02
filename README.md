@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RehApp
 
-## Getting Started
+Guía de recuperación para pacientes operados de **fracturas** y **prótesis de rodilla**.
 
-First, run the development server:
+## Cómo funciona
+
+1. **El cirujano** abre `#/medico`, elige la intervención, la fecha y el lado, ajusta las restricciones
+   (apoyo, carga, ortesis) y las semanas de cada fase, y añade indicaciones personales.
+2. Se genera un **código QR / enlace** (se puede imprimir una hoja para el paciente). Toda la
+   configuración viaja dentro del enlace: no hay servidor ni base de datos.
+3. **El paciente** lo abre en su móvil y ve:
+   - **Hoy**: día y semana desde la cirugía, fase actual, si puede apoyar/cargar, ortesis, próxima revisión y ejercicios del día para marcar.
+   - **Mi plan**: todas las fases con fechas, objetivos, qué puede y qué no puede hacer, y ejercicios.
+   - **Mi dolor**: diario de dolor 0-10 con gráfica.
+   - **Ayuda**: señales de alarma (112 / Urgencias / consulta), teléfono del equipo y preguntas frecuentes.
+
+Los datos del paciente se guardan solo en su móvil (`localStorage`).
+
+## Contenido clínico
+
+Todo el contenido está en `src/data/` y se puede editar sin tocar la interfaz:
+
+| Archivo | Contenido |
+| --- | --- |
+| `procedures/upper.ts` | Clavícula, húmero proximal, diáfisis humeral, codo, radio distal, mano |
+| `procedures/lower.ts` | Prótesis de rodilla, cadera, pelvis/acetábulo, fémur, rótula, meseta tibial, tibia, tobillo, pilón, calcáneo, pie |
+| `exercises.ts` | Biblioteca de ejercicios explicados para pacientes |
+| `general.ts` | Señales de alarma y preguntas frecuentes generales |
+
+> ⚠️ Los protocolos son orientativos y deben ser revisados por el equipo quirúrgico antes de usarse con pacientes.
+
+## Desarrollo
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run build` genera la web estática en `dist/`. Al hacer push a `main` se publica automáticamente en GitHub Pages.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Tecnología: React + TypeScript + Vite + Tailwind CSS.
