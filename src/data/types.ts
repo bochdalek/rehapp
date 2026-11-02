@@ -41,6 +41,8 @@ export interface Faq {
 
 export interface Procedure {
   id: string;
+  /** Número fijo usado en el código corto del paciente. No cambiar nunca; los nuevos, al final. */
+  code: number;
   name: string;
   group: string;
   limb: Limb;

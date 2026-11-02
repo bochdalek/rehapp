@@ -10,7 +10,7 @@ export default function Plan({ ctx }: { ctx: PatientCtx }) {
   const [open, setOpen] = useState<number | null>(days < 0 ? 0 : phaseIdx);
 
   return (
-    <div>
+    <div className="lg:max-w-3xl">
       <Card>
         <h2 className="text-xl font-semibold text-slate-900">Sobre tu operación</h2>
         <p className="mt-2 text-slate-700">{proc.intro}</p>
@@ -39,7 +39,11 @@ export default function Plan({ ctx }: { ctx: PatientCtx }) {
                 {isPast && <Check className="size-3 text-white" strokeWidth={4} />}
               </span>
               <div className={`rounded-xl border bg-white ${isCurrent ? "border-brand-600 border-2" : "border-slate-200"}`}>
-                <button onClick={() => setOpen(expanded ? null : i)} className="flex w-full items-center gap-2 p-4 text-left" aria-expanded={expanded}>
+                <button
+                  onClick={() => setOpen(expanded ? null : i)}
+                  className="flex w-full items-center gap-2 p-4 text-left"
+                  aria-expanded={expanded}
+                >
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-brand-700">
                       Fase {i + 1}
