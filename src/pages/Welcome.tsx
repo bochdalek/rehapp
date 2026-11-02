@@ -8,7 +8,7 @@ const STEPS = [
   { title: "Saber en qué punto estás", text: "En qué semana y fase de tu recuperación te encuentras, y qué viene después." },
   { title: "Qué puedes hacer y qué no", text: "Si puedes apoyar el pie o cargar con el brazo, y hasta cuándo llevar la férula." },
   { title: "Tus ejercicios de cada día", text: "Explicados paso a paso, para que los marques al hacerlos." },
-  { title: "Cuándo pedir ayuda", text: "Las señales de alarma y el teléfono de tu equipo, siempre a mano." },
+  { title: "Cuándo pedir ayuda", text: "Las señales de alarma, para saber cuándo ir a Urgencias o a tu centro de salud." },
 ];
 
 export default function Welcome({ onDemo }: { onDemo: (c: PatientConfig) => void }) {

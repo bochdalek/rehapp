@@ -18,8 +18,6 @@ export interface PatientConfig {
   note?: string;
   /** nombre del cirujano / equipo */
   dr?: string;
-  /** teléfono de contacto */
-  tel?: string;
   /** próxima revisión YYYY-MM-DD */
   rev?: string;
 }

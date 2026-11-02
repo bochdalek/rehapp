@@ -1,12 +1,10 @@
 /**
- * Ajustes del equipo. Se muestran a todos los pacientes que entren con código
- * corto (el código no lleva estos datos). Rellénalos con los de la consulta.
+ * Ajustes del equipo. Se muestran a los pacientes que entren con código corto
+ * (el código no lleva estos datos).
  */
 export const CLINIC = {
   /** Nombre del cirujano o del equipo, p. ej. "Dra. García · Traumatología" */
   team: "",
-  /** Teléfono de contacto para dudas */
-  phone: "",
 };
 
 /**

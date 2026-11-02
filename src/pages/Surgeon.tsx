@@ -18,7 +18,6 @@ const label = "mb-1 block text-sm font-medium text-slate-700";
 
 interface TeamDefaults {
   dr?: string;
-  tel?: string;
 }
 
 function Step({ n, title, hint, children }: { n: number; title: string; hint?: string; children: ReactNode }) {
@@ -61,7 +60,7 @@ export default function Surgeon() {
 }
 
 function Planner({ onLock }: { onLock: () => void }) {
-  const [team, setTeam] = useStored<TeamDefaults>("rehapp.team", { dr: CLINIC.team, tel: CLINIC.phone });
+  const [team, setTeam] = useStored<TeamDefaults>("rehapp.team", { dr: CLINIC.team });
   const [saved, setSaved] = useStored<SavedTemplate[]>("rehapp.templates", []);
   const [procId, setProcId] = useState(PROCEDURES[0].id);
   const proc = getProcedure(procId) as Procedure;
@@ -105,7 +104,6 @@ function Planner({ onLock }: { onLock: () => void }) {
     if (starts.some((s, i) => s !== proc.phases[i].fromWeek)) c.ph = starts;
     if (note.trim()) c.note = note.trim();
     if (team.dr?.trim()) c.dr = team.dr.trim();
-    if (team.tel?.trim()) c.tel = team.tel.trim();
     if (rev) c.rev = rev;
     return c;
   }, [procId, proc, date, side, name, r, starts, note, team, rev]);
@@ -321,10 +319,6 @@ function Planner({ onLock }: { onLock: () => void }) {
                     placeholder="Dr./Dra. …"
                   />
                 </label>
-                <label className="block">
-                  <span className={label}>Teléfono de contacto</span>
-                  <input className={input} type="tel" value={team.tel ?? ""} onChange={(e) => setTeam({ ...team, tel: e.target.value })} />
-                </label>
               </div>
             </Step>
           </div>
@@ -342,7 +336,9 @@ function Planner({ onLock }: { onLock: () => void }) {
               ) : (
                 <p className="mt-1 text-sm text-amber-800">{startsValid ? shortProblem : "Corrige las fases para generar el código."}</p>
               )}
-              <p className="mt-2 text-sm text-slate-500">El paciente lo escribe en la app. Útil para dictarlo por teléfono.</p>
+              <p className="mt-2 text-sm text-slate-500">
+                El paciente lo escribe en la pantalla de inicio de la app, sin necesidad de escanear el QR.
+              </p>
 
               <div className="mt-5 border-t border-slate-200 pt-5 text-center">
                 {qr && startsValid ? (
@@ -376,7 +372,7 @@ function Planner({ onLock }: { onLock: () => void }) {
                 </a>
               </div>
             </div>
-            <p className="mt-3 px-1 text-xs text-slate-500">Las plantillas, el equipo y el teléfono se guardan en este dispositivo.</p>
+            <p className="mt-3 px-1 text-xs text-slate-500">Las plantillas y el nombre del equipo se guardan en este dispositivo.</p>
           </aside>
         </div>
       </div>
@@ -457,11 +453,7 @@ function PrintSheet({
         Acude a Urgencias si tienes: dolor muy intenso que no cede, dedos fríos o azulados, fiebre con la herida roja o supurando, o dolor e
         hinchazón en la pantorrilla. Si te falta el aire o te duele el pecho, llama al 112.
       </p>
-      {(config.dr || config.tel) && (
-        <p className="mt-4">
-          {config.dr} {config.tel && `· Tel. ${config.tel}`}
-        </p>
-      )}
+      {config.dr && <p className="mt-4">{config.dr}</p>}
     </div>
   );
 }

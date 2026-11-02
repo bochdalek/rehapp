@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, Phone, Siren, Hospital, PhoneCall, ShieldCheck } from "lucide-react";
+import { ChevronDown, Siren, Hospital, ShieldCheck, Stethoscope } from "lucide-react";
 import { alarms, GENERAL_FAQ } from "../../data/general";
 import { Button, Card, SectionTitle } from "../../components/ui";
 import type { PatientCtx } from "../../lib/patient";
@@ -8,7 +8,7 @@ import { CLINIC } from "../../data/clinic";
 const LEVEL = {
   "112": { box: "bg-red-600 text-white", Icon: Siren, item: "text-red-50" },
   urgencias: { box: "bg-orange-50 border-l-4 border-orange-500 rounded-l-none text-orange-950", Icon: Hospital, item: "text-slate-700" },
-  consulta: { box: "bg-white border-l-4 border-brand-600 rounded-l-none text-slate-900", Icon: PhoneCall, item: "text-slate-700" },
+  consulta: { box: "bg-white border-l-4 border-brand-600 rounded-l-none text-slate-900", Icon: Stethoscope, item: "text-slate-700" },
 };
 
 export default function Help({ ctx, onReset }: { ctx: PatientCtx; onReset: () => void }) {
@@ -17,27 +17,18 @@ export default function Help({ ctx, onReset }: { ctx: PatientCtx; onReset: () =>
   const faq = [...(proc.faq ?? []), ...GENERAL_FAQ];
   // Quien entra con código corto no trae estos datos: se usan los de la consulta
   const dr = config.dr || CLINIC.team;
-  const tel = config.tel || CLINIC.phone;
 
   return (
     <div className="lg:grid lg:grid-cols-2 lg:gap-12">
       <div>
-        {(tel || dr) && (
+        {dr && (
           <Card className="mb-4">
-            {dr && <p className="font-display text-xl font-semibold text-slate-900">{dr}</p>}
-            <p className="text-sm text-slate-500">Llama si tienes dudas sobre tu recuperación.</p>
-            {tel && (
-              <a
-                href={`tel:${tel.replace(/\s/g, "")}`}
-                className="mt-3 flex min-h-12 items-center justify-center gap-2 rounded-lg bg-brand-700 px-4 font-semibold text-white"
-              >
-                <Phone className="size-5" /> Llamar · {tel}
-              </a>
-            )}
+            <p className="font-display text-xl font-semibold text-slate-900">{dr}</p>
+            <p className="text-slate-600">Apunta tus dudas y coméntalas en la próxima revisión.</p>
           </Card>
         )}
 
-        <SectionTitle className={tel || dr ? "" : "mt-0"}>Cuándo pedir ayuda</SectionTitle>
+        <SectionTitle className={dr ? "" : "mt-0"}>Cuándo pedir ayuda</SectionTitle>
         <div className="space-y-3">
           {alarms(proc.limb, proc.warnings).map((a) => {
             const st = LEVEL[a.level];

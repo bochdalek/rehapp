@@ -6,7 +6,9 @@ export function Card({ children, className = "" }: { children: ReactNode; classN
 
 export function SectionTitle({ children, aside, className = "" }: { children: ReactNode; aside?: ReactNode; className?: string }) {
   return (
-    <div className={`${/(^|\s)mt-/.test(className) ? "" : "mt-8"} mb-3 flex items-baseline justify-between gap-3 border-b border-slate-200 pb-2 ${className}`}>
+    <div
+      className={`${/(^|\s)mt-/.test(className) ? "" : "mt-8"} mb-3 flex items-baseline justify-between gap-3 border-b border-slate-200 pb-2 ${className}`}
+    >
       <h2 className="text-xl font-semibold text-slate-900">{children}</h2>
       {aside && <span className="text-sm text-slate-500">{aside}</span>}
     </div>
