@@ -1,52 +1,55 @@
-import { HeartPulse, QrCode, Stethoscope } from "lucide-react";
-import { Button, Card } from "../components/ui";
+import { Camera, Stethoscope } from "lucide-react";
+import { Button } from "../components/ui";
 import { navigate } from "../lib/router";
 import { todayKey, type PatientConfig } from "../lib/config";
+
+const STEPS = [
+  { title: "Saber en qué punto estás", text: "En qué semana y fase de tu recuperación te encuentras, y qué viene después." },
+  { title: "Qué puedes hacer y qué no", text: "Si puedes apoyar el pie o cargar con el brazo, y hasta cuándo llevar la férula." },
+  { title: "Tus ejercicios de cada día", text: "Explicados paso a paso, para que los marques al hacerlos." },
+  { title: "Cuándo pedir ayuda", text: "Las señales de alarma y el teléfono de tu equipo, siempre a mano." },
+];
 
 export default function Welcome({ onDemo }: { onDemo: (c: PatientConfig) => void }) {
   const demo = () => {
     const d = new Date();
     d.setDate(d.getDate() - 10);
-    onDemo({ p: "protesis-rodilla", d: todayKey(d), s: "der", n: "Demo" });
+    onDemo({ p: "protesis-rodilla", d: todayKey(d), s: "der", n: "Carmen" });
   };
 
   return (
-    <main className="mx-auto flex min-h-dvh max-w-lg flex-col px-4 py-10">
-      <div className="mb-8 flex items-center gap-3">
-        <div className="grid size-12 place-items-center rounded-2xl bg-teal-700 text-white">
-          <HeartPulse className="size-7" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">RehApp</h1>
-          <p className="text-slate-500">Tu guía de recuperación tras la cirugía</p>
-        </div>
+    <main className="mx-auto flex min-h-dvh max-w-lg flex-col px-4 py-8">
+      <p className="flex items-center gap-2 font-semibold text-brand-700">
+        <span className="size-3 rotate-45 bg-brand-700" aria-hidden="true" /> RehApp
+      </p>
+
+      <h1 className="mt-8 text-4xl leading-tight font-semibold text-slate-900">Tu recuperación, semana a semana.</h1>
+      <p className="mt-3 text-lg text-slate-600">
+        Una guía para después de tu operación de fractura o de prótesis de rodilla, preparada por tu cirujano.
+      </p>
+
+      <div className="mt-6 flex gap-3 rounded-xl bg-brand-700 p-4 text-white">
+        <Camera className="mt-0.5 size-6 shrink-0" />
+        <p>
+          <span className="font-semibold">Para empezar, escanea el código QR</span> que te dimos en la consulta con la cámara del móvil, o abre el
+          enlace que te enviamos.
+        </p>
       </div>
 
-      <Card className="mb-4">
-        <div className="flex gap-3">
-          <QrCode className="mt-1 size-6 shrink-0 text-teal-700" />
-          <div>
-            <h2 className="text-lg font-semibold text-slate-900">¿Eres paciente?</h2>
-            <p className="mt-1 text-slate-600">
-              Escanea con la cámara del móvil el código QR que te hemos dado en la consulta, o abre el enlace que te hemos
-              enviado. Tu plan de recuperación aparecerá aquí automáticamente.
-            </p>
-          </div>
-        </div>
-      </Card>
+      <ol className="mt-8 space-y-5">
+        {STEPS.map((s, i) => (
+          <li key={s.title} className="flex gap-4">
+            <span className="font-display w-6 shrink-0 text-2xl leading-none font-semibold text-brand-300">{i + 1}</span>
+            <div>
+              <h2 className="text-lg font-semibold text-slate-900">{s.title}</h2>
+              <p className="text-slate-600">{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p className="mt-6 text-sm text-slate-500">Lo que anotes se guarda solo en tu móvil.</p>
 
-      <Card className="mb-4">
-        <h2 className="text-lg font-semibold text-slate-900">¿Qué encontrarás?</h2>
-        <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-600">
-          <li>En qué semana de tu recuperación estás y qué puedes hacer</li>
-          <li>Tus ejercicios de cada día, explicados paso a paso</li>
-          <li>Un diario para anotar tu dolor</li>
-          <li>Cuándo debes llamar o acudir a Urgencias</li>
-        </ul>
-        <p className="mt-3 text-sm text-slate-500">Tus datos se guardan solo en este móvil.</p>
-      </Card>
-
-      <div className="mt-auto flex flex-col gap-2 pt-6">
+      <div className="mt-auto flex flex-col gap-2 pt-8">
         <Button variant="secondary" onClick={demo}>
           Ver un ejemplo
         </Button>

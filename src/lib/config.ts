@@ -115,10 +115,11 @@ export function statusToday(proc: Procedure, r: Restrictions, surgery: string, d
   const out: StatusLine[] = [];
 
   if (r.device && r.deviceUntil && week < r.deviceUntil) {
+    const lo = withArticle(r.device).startsWith("el") ? "lo" : "la";
     out.push({
       tone: "amber",
-      title: `Lleva tu ${r.device}`,
-      detail: "Úsala tal y como te han explicado. Quítatela solo para lo que te hayan autorizado (aseo, ejercicios).",
+      title: `Lleva ${withArticle(r.device)}`,
+      detail: `Lléva${lo} como te han explicado. Quítate${lo} solo para lo que te hayan autorizado (aseo, ejercicios).`,
       until: dateAtWeek(surgery, r.deviceUntil),
     });
   }
@@ -165,4 +166,31 @@ export function statusToday(proc: Procedure, r: Restrictions, surgery: string, d
     }
   }
   return out;
+}
+
+export interface Milestone {
+  week: number;
+  label: string;
+}
+
+/** Hitos que el paciente espera: dejar la ortesis, empezar a apoyar, cargar peso… */
+export function milestones(proc: Procedure, r: Restrictions): Milestone[] {
+  const out: Milestone[] = [];
+  if (r.device && r.deviceUntil) out.push({ week: r.deviceUntil, label: `Dejar ${withArticle(r.device)}` });
+  if (proc.limb === "inferior") {
+    const nw = r.noWeightUntil ?? 0;
+    const pw = r.partialUntil ?? 0;
+    if (nw > 0 && pw > nw) out.push({ week: nw, label: "Empezar a apoyar el pie" });
+    const full = Math.max(nw, pw);
+    if (full > 0) out.push({ week: full, label: "Apoyar todo el peso" });
+  } else if (r.noLiftUntil) {
+    out.push({ week: r.noLiftUntil, label: "Empezar a cargar peso con el brazo" });
+  }
+  return out.sort((a, b) => a.week - b.week);
+}
+
+/** "cabestrillo" → "el cabestrillo"; "férula" → "la férula" */
+export function withArticle(device: string): string {
+  const first = device.split(" ")[0];
+  return `${/o$/.test(first) ? "el" : "la"} ${device}`;
 }

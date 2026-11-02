@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Ban, Check, ChevronDown, Target } from "lucide-react";
-import { getExercise } from "../../data/exercises";
 import { BulletList, Card } from "../../components/ui";
-import ExerciseCard from "../../components/ExerciseCard";
+import ExerciseList from "../../components/ExerciseCard";
 import { dateAtWeek, formatDate } from "../../lib/config";
 import type { PatientCtx } from "../../lib/patient";
 
@@ -13,14 +12,14 @@ export default function Plan({ ctx }: { ctx: PatientCtx }) {
   return (
     <div>
       <Card>
-        <h2 className="font-semibold text-slate-900">Sobre tu operación</h2>
+        <h2 className="text-xl font-semibold text-slate-900">Sobre tu operación</h2>
         <p className="mt-2 text-slate-700">{proc.intro}</p>
         <p className="mt-3 text-sm text-slate-500">
           Las fechas son orientativas. Cada persona se recupera a su ritmo y tu cirujano puede ajustarlas en las revisiones.
         </p>
       </Card>
 
-      <ol className="relative mt-5 space-y-3 border-l-2 border-teal-100 pl-5">
+      <ol className="relative mt-5 space-y-3 border-l-2 border-brand-200 pl-5">
         {proc.phases.map((ph, i) => {
           const isCurrent = days >= 0 && i === phaseIdx;
           const isPast = days >= 0 && i < phaseIdx;
@@ -34,19 +33,19 @@ export default function Plan({ ctx }: { ctx: PatientCtx }) {
             <li key={i} className="relative">
               <span
                 className={`absolute top-4 -left-[1.95rem] grid size-5 place-items-center rounded-full ring-4 ring-slate-50 ${
-                  isCurrent ? "bg-teal-600" : isPast ? "bg-teal-300" : "bg-slate-300"
+                  isCurrent ? "bg-brand-600" : isPast ? "bg-brand-300" : "bg-slate-300"
                 }`}
               >
                 {isPast && <Check className="size-3 text-white" strokeWidth={4} />}
               </span>
-              <div className={`rounded-2xl bg-white shadow-sm ring-1 ${isCurrent ? "ring-2 ring-teal-500" : "ring-slate-200"}`}>
+              <div className={`rounded-xl border bg-white ${isCurrent ? "border-brand-600 border-2" : "border-slate-200"}`}>
                 <button onClick={() => setOpen(expanded ? null : i)} className="flex w-full items-center gap-2 p-4 text-left" aria-expanded={expanded}>
                   <div className="flex-1">
-                    <p className="text-xs font-semibold tracking-wide text-teal-700 uppercase">
+                    <p className="text-sm font-semibold text-brand-700">
                       Fase {i + 1}
-                      {isCurrent && " · Ahora"}
+                      {isCurrent && " · estás aquí"}
                     </p>
-                    <p className="font-semibold text-slate-900">{ph.title}</p>
+                    <h3 className="text-lg font-semibold text-slate-900">{ph.title}</h3>
                     <p className="text-sm text-slate-500">{range}</p>
                   </div>
                   <ChevronDown className={`size-5 text-slate-400 transition ${expanded ? "rotate-180" : ""}`} />
@@ -56,7 +55,7 @@ export default function Plan({ ctx }: { ctx: PatientCtx }) {
                     <p className="text-slate-700">{ph.summary}</p>
                     <div>
                       <p className="mb-2 font-semibold text-slate-900">Objetivos</p>
-                      <BulletList items={ph.goals} icon={<Target className="size-5 text-teal-600" />} />
+                      <BulletList items={ph.goals} icon={<Target className="size-5 text-brand-600" />} />
                     </div>
                     <div>
                       <p className="mb-2 font-semibold text-slate-900">Puedes</p>
@@ -68,11 +67,7 @@ export default function Plan({ ctx }: { ctx: PatientCtx }) {
                     </div>
                     <div>
                       <p className="mb-2 font-semibold text-slate-900">Ejercicios</p>
-                      <div className="space-y-2">
-                        {ph.exercises.map((id) => (
-                          <ExerciseCard key={id} ex={getExercise(id)} />
-                        ))}
-                      </div>
+                      <ExerciseList ids={ph.exercises} />
                     </div>
                   </div>
                 )}

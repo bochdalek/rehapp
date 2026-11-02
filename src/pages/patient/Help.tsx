@@ -6,8 +6,8 @@ import type { PatientCtx } from "../../lib/patient";
 
 const LEVEL = {
   "112": { box: "bg-red-600 text-white", Icon: Siren, item: "text-red-50" },
-  urgencias: { box: "bg-orange-50 ring-1 ring-orange-200 text-orange-900", Icon: Hospital, item: "text-slate-700" },
-  consulta: { box: "bg-white ring-1 ring-slate-200 text-slate-900", Icon: PhoneCall, item: "text-slate-700" },
+  urgencias: { box: "bg-orange-50 border-l-4 border-orange-500 rounded-l-none text-orange-950", Icon: Hospital, item: "text-slate-700" },
+  consulta: { box: "bg-white border-l-4 border-brand-600 rounded-l-none text-slate-900", Icon: PhoneCall, item: "text-slate-700" },
 };
 
 export default function Help({ ctx, onReset }: { ctx: PatientCtx; onReset: () => void }) {
@@ -19,12 +19,12 @@ export default function Help({ ctx, onReset }: { ctx: PatientCtx; onReset: () =>
     <div>
       {(config.tel || config.dr) && (
         <Card className="mb-4">
-          <p className="text-sm text-slate-500">Tu equipo</p>
-          {config.dr && <p className="text-lg font-semibold text-slate-900">{config.dr}</p>}
+          {config.dr && <p className="font-display text-xl font-semibold text-slate-900">{config.dr}</p>}
+          <p className="text-sm text-slate-500">Llama si tienes dudas sobre tu recuperación.</p>
           {config.tel && (
             <a
               href={`tel:${config.tel.replace(/\s/g, "")}`}
-              className="mt-3 flex min-h-12 items-center justify-center gap-2 rounded-xl bg-teal-700 px-4 font-semibold text-white"
+              className="mt-3 flex min-h-12 items-center justify-center gap-2 rounded-lg bg-brand-700 px-4 font-semibold text-white"
             >
               <Phone className="size-5" /> Llamar · {config.tel}
             </a>
@@ -32,22 +32,22 @@ export default function Help({ ctx, onReset }: { ctx: PatientCtx; onReset: () =>
         </Card>
       )}
 
-      <SectionTitle>Señales de alarma</SectionTitle>
+      <SectionTitle>Cuándo pedir ayuda</SectionTitle>
       <div className="space-y-3">
         {alarms(proc.limb, proc.warnings).map((a) => {
           const st = LEVEL[a.level];
           return (
-            <div key={a.level} className={`rounded-2xl p-4 ${st.box}`}>
-              <p className="flex items-center gap-2 text-lg font-bold">
+            <div key={a.level} className={`rounded-xl p-4 ${st.box}`}>
+              <h3 className="flex items-center gap-2 text-xl font-semibold">
                 <st.Icon className="size-6" /> {a.title}
-              </p>
+              </h3>
               <ul className={`mt-2 list-disc space-y-1 pl-5 ${st.item}`}>
                 {a.items.map((t) => (
                   <li key={t}>{t}</li>
                 ))}
               </ul>
               {a.level === "112" && (
-                <a href="tel:112" className="mt-3 block rounded-xl bg-white py-3 text-center font-bold text-red-700">
+                <a href="tel:112" className="mt-3 block rounded-lg bg-white py-3 text-center font-bold text-red-700">
                   Llamar al 112
                 </a>
               )}
@@ -75,7 +75,7 @@ export default function Help({ ctx, onReset }: { ctx: PatientCtx; onReset: () =>
       <SectionTitle>Tus datos</SectionTitle>
       <Card>
         <p className="flex gap-2 text-slate-700">
-          <ShieldCheck className="size-5 shrink-0 text-teal-700" />
+          <ShieldCheck className="size-5 shrink-0 text-brand-700" />
           Todo lo que anotas se guarda solo en este móvil. No se envía a ningún sitio.
         </p>
         <p className="mt-3 text-sm text-slate-500">

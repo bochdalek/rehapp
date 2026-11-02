@@ -1,14 +1,23 @@
-import { CalendarClock, ClipboardList, MessageSquareText } from "lucide-react";
-import { getExercise } from "../../data/exercises";
+import { CalendarClock, MessageSquareText } from "lucide-react";
 import { Card, SectionTitle } from "../../components/ui";
-import ExerciseCard from "../../components/ExerciseCard";
+import ExerciseList from "../../components/ExerciseCard";
+import RecoveryPath from "../../components/RecoveryPath";
 import StatusCard from "../../components/StatusCard";
 import { daysSince, formatDate, statusToday, todayKey } from "../../lib/config";
 import { KEYS, useStored } from "../../lib/storage";
 import type { PatientCtx } from "../../lib/patient";
 
+function sinceText(days: number) {
+  if (days === 0) return "Hoy es el día de tu operación.";
+  if (days === 1) return "Ayer fue tu operación.";
+  if (days < 14) return `Han pasado ${days} días desde tu operación.`;
+  const w = Math.floor(days / 7);
+  const d = days % 7;
+  return `Llevas ${w} semanas${d ? ` y ${d} ${d === 1 ? "día" : "días"}` : ""} desde tu operación.`;
+}
+
 export default function Today({ ctx }: { ctx: PatientCtx }) {
-  const { config, proc, r, starts, days, week, phaseIdx } = ctx;
+  const { config, proc, r, days, phaseIdx } = ctx;
   const phase = proc.phases[phaseIdx];
   const key = todayKey();
   const [done, setDone] = useStored<Record<string, string[]>>(KEYS.done, {});
@@ -23,102 +32,73 @@ export default function Today({ ctx }: { ctx: PatientCtx }) {
 
   if (days < 0) {
     return (
-      <div className="space-y-4">
-        <Card>
-          <p className="text-slate-500">Tu cirugía será el</p>
-          <p className="text-2xl font-bold text-slate-900">{formatDate(config.d)}</p>
-          <p className="mt-1 text-teal-700">
-            Faltan {-days} {-days === 1 ? "día" : "días"}
-          </p>
-        </Card>
-        <Card>
-          <h2 className="font-semibold text-slate-900">Prepárate</h2>
-          <p className="mt-2 text-slate-700">{proc.intro}</p>
+      <div>
+        <h1 className="text-3xl leading-tight font-semibold text-slate-900">
+          Te operamos el {formatDate(config.d)}.
+        </h1>
+        <p className="mt-2 text-lg text-slate-600">
+          Faltan {-days} {-days === 1 ? "día" : "días"}. Mientras tanto, puedes ir preparándote.
+        </p>
+        <Card className="mt-5">
+          <p className="text-slate-700">{proc.intro}</p>
           <ul className="mt-3 list-disc space-y-1 pl-5 text-slate-700">
             <li>Prepara la casa: quita alfombras y deja despejado el camino al baño.</li>
             <li>Ten a mano ropa cómoda y fácil de poner.</li>
-            <li>Si fumas, intenta dejarlo: mejora la curación de la herida y del hueso.</li>
-            <li>Puedes ir practicando los primeros ejercicios en la sección "Mi plan".</li>
+            <li>Si fumas, intenta dejarlo: la herida y el hueso curan mejor.</li>
+            <li>Puedes practicar los primeros ejercicios en «Mi plan».</li>
           </ul>
         </Card>
       </div>
     );
   }
 
-  const nextStart = starts[phaseIdx + 1];
-  const progress =
-    nextStart !== undefined ? Math.min(1, (days / 7 - starts[phaseIdx]) / (nextStart - starts[phaseIdx])) : 1;
   const revDays = config.rev ? daysSince(config.rev) : undefined;
   const doneCount = phase.exercises.filter((id) => todayDone.includes(id)).length;
+  const allDone = doneCount === phase.exercises.length;
 
   return (
     <div>
-      <Card>
-        <div className="flex items-baseline justify-between">
-          <p className="text-3xl font-bold text-slate-900">Día {days}</p>
-          <p className="font-semibold text-teal-700">Semana {week}</p>
-        </div>
-        <p className="mt-1 text-sm text-slate-500">Operado el {formatDate(config.d)}</p>
-        <div className="mt-4 rounded-xl bg-teal-50 p-3">
-          <p className="text-xs font-semibold tracking-wide text-teal-700 uppercase">
-            Fase {phaseIdx + 1} de {proc.phases.length}
-          </p>
-          <p className="text-lg font-semibold text-slate-900">{phase.title}</p>
-          <p className="mt-1 text-slate-700">{phase.summary}</p>
-          {nextStart !== undefined && (
-            <div className="mt-3">
-              <div className="h-2 overflow-hidden rounded-full bg-teal-100">
-                <div className="h-full rounded-full bg-teal-600" style={{ width: `${Math.max(4, progress * 100)}%` }} />
-              </div>
-              <p className="mt-1 text-xs text-slate-500">Siguiente fase a partir de la semana {nextStart}</p>
-            </div>
-          )}
-        </div>
+      <p className="text-slate-600">{sinceText(days)}</p>
+      <h1 className="mt-1 text-3xl leading-tight font-semibold text-slate-900">{phase.title}</h1>
+      <p className="mt-2 text-slate-700">{phase.summary}</p>
+
+      <Card className="mt-5">
+        <RecoveryPath ctx={ctx} />
       </Card>
 
-      <div className="mt-4 space-y-3">
+      <SectionTitle>Hoy debes saber</SectionTitle>
+      <div className="space-y-3">
         {statusToday(proc, r, config.d, days).map((s) => (
           <StatusCard key={s.title} s={s} />
         ))}
-      </div>
-
-      {config.rev && revDays !== undefined && revDays <= 0 && (
-        <Card className="mt-3 flex items-center gap-3">
-          <CalendarClock className="size-6 shrink-0 text-teal-700" />
-          <div>
-            <p className="font-semibold text-slate-900">Próxima revisión</p>
-            <p className="text-slate-600">
-              {formatDate(config.rev)}
-              {revDays === 0 ? " · ¡Hoy!" : ` · en ${-revDays} ${revDays === -1 ? "día" : "días"}`}
+        {config.note && (
+          <div className="rounded-r-xl border-l-4 border-brand-600 bg-white p-4">
+            <p className="flex items-center gap-2 text-lg font-semibold text-slate-900">
+              <MessageSquareText className="size-5 text-brand-700" /> De tu cirujano
+            </p>
+            <p className="mt-1 whitespace-pre-line text-slate-700">{config.note}</p>
+          </div>
+        )}
+        {config.rev && revDays !== undefined && revDays <= 0 && (
+          <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4">
+            <CalendarClock className="size-6 shrink-0 text-brand-700" />
+            <p className="text-slate-700">
+              <span className="font-semibold text-slate-900">Revisión {revDays === 0 ? "hoy" : `el ${formatDate(config.rev)}`}</span>
+              {revDays < 0 && ` · dentro de ${-revDays} ${revDays === -1 ? "día" : "días"}`}
             </p>
           </div>
-        </Card>
-      )}
-
-      {config.note && (
-        <Card className="mt-3">
-          <p className="flex items-center gap-2 font-semibold text-slate-900">
-            <MessageSquareText className="size-5 text-teal-700" /> Indicaciones de tu cirujano
-          </p>
-          <p className="mt-2 whitespace-pre-line text-slate-700">{config.note}</p>
-        </Card>
-      )}
-
-      <SectionTitle icon={<ClipboardList className="size-4" />}>
-        Ejercicios de hoy · {doneCount}/{phase.exercises.length}
-      </SectionTitle>
-      <div className="space-y-2">
-        {phase.exercises.map((id) => (
-          <ExerciseCard key={id} ex={getExercise(id)} done={todayDone.includes(id)} onToggle={() => toggle(id)} />
-        ))}
+        )}
       </div>
-      {doneCount === phase.exercises.length && (
-        <p className="mt-3 rounded-xl bg-teal-50 p-3 text-center font-medium text-teal-800">¡Buen trabajo! Has completado los ejercicios de hoy.</p>
+
+      <SectionTitle aside={allDone ? "Completados" : `${doneCount} de ${phase.exercises.length} hechos`}>Tus ejercicios de hoy</SectionTitle>
+      <ExerciseList ids={phase.exercises} done={todayDone} onToggle={toggle} />
+      {allDone ? (
+        <p className="mt-3 rounded-xl bg-brand-50 p-3 text-brand-900">Has hecho todos los ejercicios de hoy. Mañana, otra vez: la constancia es lo que más ayuda.</p>
+      ) : (
+        <p className="mt-3 text-sm text-slate-500">
+          Toca «Cómo» para ver los pasos. Si un ejercicio te causa un dolor fuerte que no se pasa al parar, déjalo y coméntalo en la revisión.
+        </p>
       )}
-      <p className="mt-4 px-1 text-sm text-slate-500">
-        Toca un ejercicio para ver cómo se hace. Si alguno te produce un dolor intenso que no se pasa al parar, no sigas y coméntalo
-        en la revisión.
-      </p>
     </div>
   );
 }

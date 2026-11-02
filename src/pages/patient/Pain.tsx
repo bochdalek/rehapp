@@ -34,16 +34,16 @@ export default function Pain() {
 
   return (
     <div>
-      <Card>
-        <h2 className="font-semibold text-slate-900">¿Cuánto te duele hoy?</h2>
-        <p className="text-sm text-slate-500">0 = nada · 10 = el peor dolor imaginable</p>
+      <div>
+        <h1 className="text-3xl font-semibold text-slate-900">¿Cuánto te duele hoy?</h1>
+        <p className="text-slate-600">De 0 (nada) a 10 (el peor dolor que puedas imaginar).</p>
         <div className="mt-4 grid grid-cols-6 gap-2">
           {Array.from({ length: 11 }, (_, v) => (
             <button
               key={v}
               onClick={() => save(v)}
-              className={`h-12 rounded-xl text-lg font-bold transition ${
-                today?.v === v ? `${color(v)} text-white` : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              className={`h-12 rounded-lg text-lg font-bold transition ${
+                today?.v === v ? `${color(v)} text-white` : "border border-slate-300 bg-white text-slate-700 hover:border-brand-400"
               }`}
             >
               {v}
@@ -60,7 +60,7 @@ export default function Pain() {
           onChange={(e) => setNote(e.target.value)}
           onBlur={saveNote}
           placeholder="Notas (opcional): cómo has dormido, si se ha hinchado, medicación…"
-          className="mt-3 w-full rounded-xl border border-slate-200 p-3 text-base focus:border-teal-500 focus:outline-none"
+          className="mt-3 w-full rounded-lg border border-slate-300 bg-white p-3 text-base"
           rows={2}
         />
         {today && today.v >= 8 && (
@@ -69,7 +69,7 @@ export default function Pain() {
             sección Ayuda.
           </p>
         )}
-      </Card>
+      </div>
 
       <SectionTitle>Últimos 14 días</SectionTitle>
       <Card>
@@ -93,7 +93,7 @@ export default function Pain() {
 
       {history.length > 0 && (
         <>
-          <SectionTitle>Registro</SectionTitle>
+          <SectionTitle>Lo que has anotado</SectionTitle>
           <Card className="divide-y divide-slate-100 p-0">
             {history.map(([d, e]) => (
               <div key={d} className="flex items-start gap-3 px-4 py-3">

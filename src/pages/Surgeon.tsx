@@ -8,7 +8,7 @@ import { navigate } from "../lib/router";
 import { dateAtWeek, formatDate, patientLink, todayKey, type PatientConfig } from "../lib/config";
 import { useStored } from "../lib/storage";
 
-const base = "rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-base focus:border-teal-600 focus:outline-none";
+const base = "rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-base focus:border-brand-600 focus:outline-none";
 const input = `w-full ${base}`;
 const num = `w-20 shrink-0 ${base}`;
 const label = "mb-1 block text-sm font-medium text-slate-700";
@@ -19,7 +19,7 @@ interface TeamDefaults {
   tel?: string;
 }
 
-function NumberField({ value, onChange, label: l, suffix = "semanas" }: { value?: number; onChange: (v?: number) => void; label: string; suffix?: string }) {
+function NumberField({ value, onChange, label: l, suffix }: { value?: number; onChange: (v?: number) => void; label: string; suffix?: string }) {
   return (
     <label className="block">
       <span className={label}>{l}</span>
@@ -33,7 +33,7 @@ function NumberField({ value, onChange, label: l, suffix = "semanas" }: { value?
           value={value ?? ""}
           onChange={(e) => onChange(e.target.value === "" ? undefined : Number(e.target.value))}
         />
-        <span className="text-sm text-slate-500">{suffix}</span>
+        {suffix && <span className="text-sm text-slate-500">{suffix}</span>}
       </div>
     </label>
   );
@@ -108,10 +108,10 @@ export default function Surgeon() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">
       <div className="no-print">
-        <button onClick={() => navigate("/")} className="mb-4 flex items-center gap-1 text-sm font-medium text-teal-800">
+        <button onClick={() => navigate("/")} className="mb-4 flex items-center gap-1 text-sm font-medium text-brand-800">
           <ArrowLeft className="size-4" /> Inicio
         </button>
-        <h1 className="text-2xl font-bold text-slate-900">Crear plan para un paciente</h1>
+        <h1 className="text-3xl font-semibold text-slate-900">Crear el plan de un paciente</h1>
         <p className="mt-1 text-slate-600">
           Rellena los datos y entrega al paciente el código QR (impreso o en pantalla) o envíale el enlace. No se guarda nada en
           ningún servidor: toda la información va dentro del propio enlace.
@@ -156,7 +156,7 @@ export default function Surgeon() {
 
             <Card className="space-y-4">
               <div>
-                <h2 className="font-semibold text-slate-900">Restricciones</h2>
+                <h2 className="text-lg font-semibold text-slate-900">Restricciones</h2>
                 <p className="text-sm text-slate-500">Valores por defecto del protocolo. Ajústalos a la fijación y al paciente.</p>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
@@ -186,7 +186,7 @@ export default function Surgeon() {
 
             <Card className="space-y-3">
               <div>
-                <h2 className="font-semibold text-slate-900">Fases</h2>
+                <h2 className="text-lg font-semibold text-slate-900">Fases</h2>
                 <p className="text-sm text-slate-500">Semana (desde la cirugía) en la que empieza cada fase.</p>
               </div>
               {proc.phases.map((ph, i) => (
@@ -256,7 +256,7 @@ export default function Surgeon() {
                   href={link}
                   target="_blank"
                   rel="noreferrer"
-                  className="col-span-2 flex items-center justify-center gap-1 py-2 text-sm font-medium text-teal-800"
+                  className="col-span-2 flex items-center justify-center gap-1 py-2 text-sm font-medium text-brand-800"
                 >
                   <ExternalLink className="size-4" /> Ver como lo verá el paciente
                 </a>
