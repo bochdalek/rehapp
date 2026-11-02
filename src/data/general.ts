@@ -9,7 +9,10 @@ export interface AlarmLevel {
 export function alarms(limb: Limb, extra: string[] = []): AlarmLevel[] {
   const limbItems =
     limb === "inferior"
-      ? ["Dedos del pie fríos, pálidos o azulados, o que no puedes mover", "Dolor en la pantorrilla con hinchazón, calor o enrojecimiento (posible trombo)"]
+      ? [
+          "Dedos del pie fríos, pálidos o azulados, o que no puedes mover",
+          "Dolor en la pantorrilla con hinchazón, calor o enrojecimiento (posible trombo)",
+        ]
       : ["Dedos de la mano fríos, pálidos o azulados, o que no puedes mover"];
   return [
     {

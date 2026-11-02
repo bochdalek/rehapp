@@ -91,7 +91,8 @@ export default function RecoveryPath({ ctx }: { ctx: PatientCtx }) {
           <p className="text-slate-700">
             <span className="font-semibold text-slate-900">{next.label}</span>
             <br />
-            {formatDate(dateAtWeek(config.d, next.week))} · {daysTo <= 1 ? "mañana" : daysTo < 14 ? `dentro de ${daysTo} días` : `dentro de ${Math.round(daysTo / 7)} semanas`}
+            {formatDate(dateAtWeek(config.d, next.week))} ·{" "}
+            {daysTo <= 1 ? "mañana" : daysTo < 14 ? `dentro de ${daysTo} días` : `dentro de ${Math.round(daysTo / 7)} semanas`}
           </p>
         </div>
       ) : (

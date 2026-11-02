@@ -15,7 +15,11 @@ export default function StatusCard({ s }: { s: StatusLine }) {
       <div>
         <p className={`text-lg font-semibold ${st.title}`}>{s.title}</p>
         <p className="mt-1 text-slate-700">{s.detail}</p>
-        {s.until && <p className="mt-2 text-sm font-medium text-slate-600">Hasta el {formatDate(s.until)}, salvo que te digan otra cosa en la revisión.</p>}
+        {s.until && (
+          <p className="mt-2 text-sm font-medium text-slate-600">
+            Hasta el {formatDate(s.until)}, salvo que te digan otra cosa en la revisión.
+          </p>
+        )}
       </div>
     </div>
   );

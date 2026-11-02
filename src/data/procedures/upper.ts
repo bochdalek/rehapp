@@ -6,6 +6,7 @@ const GROUP_DIST = "Codo, muñeca y mano";
 export const upper: Procedure[] = [
   {
     id: "clavicula",
+    code: 13,
     name: "Fractura de clavícula",
     group: GROUP,
     limb: "superior",
@@ -39,7 +40,11 @@ export const upper: Procedure[] = [
         title: "Movimiento completo y primeras fuerzas",
         summary: "El hueso ya suele estar soldando. Recupera el movimiento completo y empieza a fortalecer.",
         goals: ["Movimiento completo del hombro", "Empezar a ganar fuerza con poca carga"],
-        allowed: ["Levantar el brazo por encima de la cabeza", "Cargar pesos ligeros de forma progresiva", "Conducir si mueves bien el brazo"],
+        allowed: [
+          "Levantar el brazo por encima de la cabeza",
+          "Cargar pesos ligeros de forma progresiva",
+          "Conducir si mueves bien el brazo",
+        ],
         avoid: ["Deportes de contacto o caídas", "Pesos grandes"],
         exercises: ["hombro-pared", "hombro-activo", "hombro-isometrico", "goma-rotacion", "goma-remo"],
       },
@@ -56,6 +61,7 @@ export const upper: Procedure[] = [
   },
   {
     id: "humero-proximal",
+    code: 14,
     name: "Fractura de húmero proximal (hombro)",
     group: GROUP,
     limb: "superior",
@@ -103,6 +109,7 @@ export const upper: Procedure[] = [
   },
   {
     id: "humero-diafisis",
+    code: 15,
     name: "Fractura de diáfisis humeral (brazo)",
     group: GROUP,
     limb: "superior",
@@ -150,6 +157,7 @@ export const upper: Procedure[] = [
   },
   {
     id: "codo",
+    code: 16,
     name: "Fractura de codo (olécranon, húmero distal, cabeza de radio)",
     group: GROUP_DIST,
     limb: "superior",
@@ -198,6 +206,7 @@ export const upper: Procedure[] = [
   },
   {
     id: "radio-distal",
+    code: 17,
     name: "Fractura de muñeca (radio distal)",
     group: GROUP_DIST,
     limb: "superior",
@@ -246,6 +255,7 @@ export const upper: Procedure[] = [
   },
   {
     id: "mano",
+    code: 18,
     name: "Fractura de mano (metacarpianos o falanges)",
     group: GROUP_DIST,
     limb: "superior",

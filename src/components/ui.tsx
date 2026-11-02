@@ -4,9 +4,9 @@ export function Card({ children, className = "" }: { children: ReactNode; classN
   return <div className={`rounded-xl border border-slate-200 bg-white p-4 ${className}`}>{children}</div>;
 }
 
-export function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactNode }) {
+export function SectionTitle({ children, aside, className = "" }: { children: ReactNode; aside?: ReactNode; className?: string }) {
   return (
-    <div className="mt-8 mb-3 flex items-baseline justify-between gap-3 border-b border-slate-200 pb-2">
+    <div className={`${/(^|\s)mt-/.test(className) ? "" : "mt-8"} mb-3 flex items-baseline justify-between gap-3 border-b border-slate-200 pb-2 ${className}`}>
       <h2 className="text-xl font-semibold text-slate-900">{children}</h2>
       {aside && <span className="text-sm text-slate-500">{aside}</span>}
     </div>

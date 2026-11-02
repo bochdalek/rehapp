@@ -33,7 +33,7 @@ export default function Pain() {
     .slice(0, 30);
 
   return (
-    <div>
+    <div className="lg:grid lg:grid-cols-2 lg:gap-12">
       <div>
         <h1 className="text-3xl font-semibold text-slate-900">¿Cuánto te duele hoy?</h1>
         <p className="text-slate-600">De 0 (nada) a 10 (el peor dolor que puedas imaginar).</p>
@@ -65,50 +65,56 @@ export default function Pain() {
         />
         {today && today.v >= 8 && (
           <p className="mt-3 rounded-xl bg-red-50 p-3 text-sm text-red-800">
-            Un dolor tan fuerte que no mejora con la medicación ni con reposo y elevación es un motivo para consultar. Mira la
-            sección Ayuda.
+            Un dolor tan fuerte que no mejora con la medicación ni con reposo y elevación es un motivo para consultar. Mira la sección
+            Ayuda.
           </p>
         )}
       </div>
 
-      <SectionTitle>Últimos 14 días</SectionTitle>
-      <Card>
-        <div className="flex h-36 items-end gap-1">
-          {days.map((d) => {
-            const e = log[d];
-            return (
-              <div key={d} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
-                {e ? (
-                  <div className={`w-full rounded-t-md ${color(e.v)}`} style={{ height: `${Math.max(4, e.v * 10)}%` }} title={`${e.v}/10`} />
-                ) : (
-                  <div className="h-1 w-full rounded bg-slate-100" />
-                )}
-                <span className="text-[10px] text-slate-400">{parseDate(d).getDate()}</span>
-              </div>
-            );
-          })}
-        </div>
-        <p className="mt-2 text-sm text-slate-500">Lo normal es que el dolor vaya bajando semana a semana.</p>
-      </Card>
-
-      {history.length > 0 && (
-        <>
-          <SectionTitle>Lo que has anotado</SectionTitle>
-          <Card className="divide-y divide-slate-100 p-0">
-            {history.map(([d, e]) => (
-              <div key={d} className="flex items-start gap-3 px-4 py-3">
-                <span className={`grid size-9 shrink-0 place-items-center rounded-full font-bold text-white ${color(e.v)}`}>{e.v}</span>
-                <div>
-                  <p className="font-medium text-slate-800">
-                    {parseDate(d).toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" })}
-                  </p>
-                  {e.note && <p className="text-sm text-slate-500">{e.note}</p>}
+      <div>
+        <SectionTitle className="lg:mt-0">Últimos 14 días</SectionTitle>
+        <Card>
+          <div className="flex h-36 items-end gap-1">
+            {days.map((d) => {
+              const e = log[d];
+              return (
+                <div key={d} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
+                  {e ? (
+                    <div
+                      className={`w-full rounded-t-md ${color(e.v)}`}
+                      style={{ height: `${Math.max(4, e.v * 10)}%` }}
+                      title={`${e.v}/10`}
+                    />
+                  ) : (
+                    <div className="h-1 w-full rounded bg-slate-100" />
+                  )}
+                  <span className="text-[10px] text-slate-400">{parseDate(d).getDate()}</span>
                 </div>
-              </div>
-            ))}
-          </Card>
-        </>
-      )}
+              );
+            })}
+          </div>
+          <p className="mt-2 text-sm text-slate-500">Lo normal es que el dolor vaya bajando semana a semana.</p>
+        </Card>
+
+        {history.length > 0 && (
+          <>
+            <SectionTitle>Lo que has anotado</SectionTitle>
+            <Card className="divide-y divide-slate-100 p-0">
+              {history.map(([d, e]) => (
+                <div key={d} className="flex items-start gap-3 px-4 py-3">
+                  <span className={`grid size-9 shrink-0 place-items-center rounded-full font-bold text-white ${color(e.v)}`}>{e.v}</span>
+                  <div>
+                    <p className="font-medium text-slate-800">
+                      {parseDate(d).toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" })}
+                    </p>
+                    {e.note && <p className="text-sm text-slate-500">{e.note}</p>}
+                  </div>
+                </div>
+              ))}
+            </Card>
+          </>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,7 +1,8 @@
-import { Camera, Stethoscope } from "lucide-react";
+import { useState, type FormEvent } from "react";
+import { Camera, KeyRound } from "lucide-react";
 import { Button } from "../components/ui";
-import { navigate } from "../lib/router";
 import { todayKey, type PatientConfig } from "../lib/config";
+import { decodeShort } from "../lib/shortcode";
 
 const STEPS = [
   { title: "Saber en qué punto estás", text: "En qué semana y fase de tu recuperación te encuentras, y qué viene después." },
@@ -11,6 +12,16 @@ const STEPS = [
 ];
 
 export default function Welcome({ onDemo }: { onDemo: (c: PatientConfig) => void }) {
+  const [code, setCode] = useState("");
+  const [error, setError] = useState("");
+
+  const submit = (e: FormEvent) => {
+    e.preventDefault();
+    const c = decodeShort(code);
+    if (c) onDemo(c);
+    else setError("Ese código no es válido. Revisa que esté bien escrito.");
+  };
+
   const demo = () => {
     const d = new Date();
     d.setDate(d.getDate() - 10);
@@ -28,12 +39,46 @@ export default function Welcome({ onDemo }: { onDemo: (c: PatientConfig) => void
         Una guía para después de tu operación de fractura o de prótesis de rodilla, preparada por tu cirujano.
       </p>
 
-      <div className="mt-6 flex gap-3 rounded-xl bg-brand-700 p-4 text-white">
-        <Camera className="mt-0.5 size-6 shrink-0" />
-        <p>
-          <span className="font-semibold">Para empezar, escanea el código QR</span> que te dimos en la consulta con la cámara del móvil, o abre el
-          enlace que te enviamos.
+      <div className="mt-6 rounded-xl bg-brand-700 p-4 text-white">
+        <p className="flex gap-3">
+          <Camera className="mt-0.5 size-6 shrink-0" />
+          <span>
+            <span className="font-semibold">Escanea el código QR</span> que te dimos en la consulta con la cámara del móvil.
+          </span>
         </p>
+        <form onSubmit={submit} className="mt-4 border-t border-white/25 pt-4">
+          <label htmlFor="code" className="flex gap-3">
+            <KeyRound className="mt-0.5 size-6 shrink-0" />
+            <span>
+              <span className="font-semibold">O escribe tu código</span> (12 letras y números).
+            </span>
+          </label>
+          <div className="mt-3 flex gap-2">
+            <input
+              id="code"
+              value={code}
+              onChange={(e) => {
+                setCode(e.target.value);
+                setError("");
+              }}
+              placeholder="XXXX-XXXX-XXXX"
+              autoCapitalize="characters"
+              autoComplete="off"
+              spellCheck={false}
+              className="min-w-0 flex-1 rounded-lg bg-white px-3 py-2.5 text-lg font-semibold tracking-wider text-slate-900 uppercase placeholder:text-slate-400"
+              aria-invalid={!!error}
+              aria-describedby={error ? "code-error" : undefined}
+            />
+            <button type="submit" className="rounded-lg bg-white px-4 font-semibold text-brand-800 hover:bg-brand-50">
+              Entrar
+            </button>
+          </div>
+          {error && (
+            <p id="code-error" className="mt-2 rounded-md bg-white px-3 py-2 text-sm font-medium text-red-700">
+              {error}
+            </p>
+          )}
+        </form>
       </div>
 
       <ol className="mt-8 space-y-5">
@@ -52,9 +97,6 @@ export default function Welcome({ onDemo }: { onDemo: (c: PatientConfig) => void
       <div className="mt-auto flex flex-col gap-2 pt-8">
         <Button variant="secondary" onClick={demo}>
           Ver un ejemplo
-        </Button>
-        <Button variant="ghost" onClick={() => navigate("/medico")}>
-          <Stethoscope className="size-5" /> Acceso para el equipo médico
         </Button>
       </div>
     </main>

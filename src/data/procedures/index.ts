@@ -2,7 +2,11 @@ import type { Procedure } from "../types";
 import { upper } from "./upper";
 import { lower } from "./lower";
 
-export const PROCEDURES: Procedure[] = [...lower.filter((p) => p.group === "Prótesis"), ...upper, ...lower.filter((p) => p.group !== "Prótesis")];
+export const PROCEDURES: Procedure[] = [
+  ...lower.filter((p) => p.group === "Prótesis"),
+  ...upper,
+  ...lower.filter((p) => p.group !== "Prótesis"),
+];
 
 export function getProcedure(id: string): Procedure | undefined {
   return PROCEDURES.find((p) => p.id === id);

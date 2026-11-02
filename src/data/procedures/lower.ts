@@ -12,6 +12,7 @@ export const lower: Procedure[] = [
   // ───────── Prótesis de rodilla ─────────
   {
     id: "protesis-rodilla",
+    code: 1,
     name: "Prótesis total de rodilla",
     group: G_PROT,
     limb: "inferior",
@@ -24,9 +25,20 @@ export const lower: Procedure[] = [
         title: "Estirar y doblar",
         summary: "Caminas con andador o muletas apoyando la pierna. La prioridad es la rodilla recta y llegar a doblar 90°.",
         goals: ["Rodilla completamente estirada", "Doblar la rodilla hasta 90°", "Controlar dolor e hinchazón con hielo y elevación"],
-        allowed: ["Caminar por casa con andador o muletas", "Subir escaleras de una en una, con barandilla", "Ducharte cuando te lo autoricen (con la herida protegida)"],
+        allowed: [
+          "Caminar por casa con andador o muletas",
+          "Subir escaleras de una en una, con barandilla",
+          "Ducharte cuando te lo autoricen (con la herida protegida)",
+        ],
         avoid: ["Almohada debajo de la rodilla para dormir", "Estar mucho rato de pie o sentado con la pierna colgando", "Arrodillarte"],
-        exercises: ["bombeo-tobillo", "cuadriceps-isometrico", "rodilla-extension-toalla", "talon-deslizar", "pierna-recta", "rodilla-flexion-sentado"],
+        exercises: [
+          "bombeo-tobillo",
+          "cuadriceps-isometrico",
+          "rodilla-extension-toalla",
+          "talon-deslizar",
+          "pierna-recta",
+          "rodilla-flexion-sentado",
+        ],
       },
       {
         fromWeek: 2,
@@ -35,14 +47,25 @@ export const lower: Procedure[] = [
         goals: ["Doblar 100-110°", "Caminar con un bastón o sin ayuda dentro de casa"],
         allowed: ["Paseos cortos fuera de casa", "Bicicleta estática sin resistencia", "Tareas ligeras de casa"],
         avoid: ["Arrodillarte", "Saltos o giros bruscos sobre la pierna"],
-        exercises: ["rodilla-extension-toalla", "rodilla-flexion-sentado", "rodilla-extension-sentado", "pierna-recta", "levantarse-silla", "bici-estatica"],
+        exercises: [
+          "rodilla-extension-toalla",
+          "rodilla-flexion-sentado",
+          "rodilla-extension-sentado",
+          "pierna-recta",
+          "levantarse-silla",
+          "bici-estatica",
+        ],
       },
       {
         fromWeek: 6,
         title: "Fuerza y equilibrio",
         summary: "La herida está curada y la rodilla se mueve bien. Toca ganar fuerza y estabilidad.",
         goals: ["Caminar sin cojear y sin ayudas", "Subir escaleras alternando piernas"],
-        allowed: ["Conducir (si es la rodilla derecha, cuando la controles bien y sin medicación que dé sueño)", "Nadar si la herida está cerrada", "Paseos largos"],
+        allowed: [
+          "Conducir (si es la rodilla derecha, cuando la controles bien y sin medicación que dé sueño)",
+          "Nadar si la herida está cerrada",
+          "Paseos largos",
+        ],
         avoid: ["Correr, saltar o deportes de impacto"],
         exercises: ["levantarse-silla", "sentadilla-parcial", "subir-escalon", "equilibrio", "puntillas", "bici-estatica"],
       },
@@ -79,6 +102,7 @@ export const lower: Procedure[] = [
   // ───────── Pelvis y cadera ─────────
   {
     id: "cadera",
+    code: 2,
     name: "Fractura de cadera (cuello o pertrocantérea)",
     group: G_PELVIS,
     limb: "inferior",
@@ -93,8 +117,18 @@ export const lower: Procedure[] = [
         summary: "Con andador y ayuda, empiezas a sentarte, levantarte y dar los primeros pasos.",
         goals: ["Sentarte en la silla y levantarte", "Caminar con andador por casa", "Prevenir trombos y problemas de pulmón"],
         allowed: ["Caminar con andador apoyando lo que toleres (salvo otra indicación)", "Sentarte en sillas altas con reposabrazos"],
-        avoid: ["Sillas bajas o sofás hundidos", "Si te han puesto prótesis: cruzar las piernas o doblar mucho la cadera, salvo que te digan lo contrario"],
-        exercises: ["bombeo-tobillo", "gluteos-isometrico", "cuadriceps-isometrico", "talon-deslizar", "cadera-abduccion-tumbado", "respiracion"],
+        avoid: [
+          "Sillas bajas o sofás hundidos",
+          "Si te han puesto prótesis: cruzar las piernas o doblar mucho la cadera, salvo que te digan lo contrario",
+        ],
+        exercises: [
+          "bombeo-tobillo",
+          "gluteos-isometrico",
+          "cuadriceps-isometrico",
+          "talon-deslizar",
+          "cadera-abduccion-tumbado",
+          "respiracion",
+        ],
       },
       {
         fromWeek: 2,
@@ -103,7 +137,14 @@ export const lower: Procedure[] = [
         goals: ["Caminar con andador o muletas sin ayuda de otra persona", "Asearte y vestirte con la menor ayuda posible"],
         allowed: ["Paseos cortos fuera de casa con acompañante", "Subir escaleras de una en una con barandilla"],
         avoid: ["Caminar sin ayuda técnica si te notas inestable", "Alfombras sueltas y suelos mojados (riesgo de caída)"],
-        exercises: ["cadera-flexion-sentado", "levantarse-silla", "puente", "cadera-abduccion-tumbado", "rodilla-extension-sentado", "caminar"],
+        exercises: [
+          "cadera-flexion-sentado",
+          "levantarse-silla",
+          "puente",
+          "cadera-abduccion-tumbado",
+          "rodilla-extension-sentado",
+          "caminar",
+        ],
       },
       {
         fromWeek: 6,
@@ -137,6 +178,7 @@ export const lower: Procedure[] = [
   },
   {
     id: "pelvis-acetabulo",
+    code: 3,
     name: "Fractura de pelvis o acetábulo",
     group: G_PELVIS,
     limb: "inferior",
@@ -186,6 +228,7 @@ export const lower: Procedure[] = [
   // ───────── Muslo y rodilla ─────────
   {
     id: "femur-diafisis",
+    code: 4,
     name: "Fractura de diáfisis de fémur (muslo)",
     group: G_LEG,
     limb: "inferior",
@@ -209,7 +252,14 @@ export const lower: Procedure[] = [
         goals: ["Rodilla con movimiento casi completo", "Levantar la pierna estirada"],
         allowed: ["Bicicleta estática sin resistencia"],
         avoid: ["Cargar más peso del indicado"],
-        exercises: ["pierna-recta", "rodilla-extension-sentado", "rodilla-flexion-sentado", "cadera-abduccion-tumbado", "puente", "bici-estatica"],
+        exercises: [
+          "pierna-recta",
+          "rodilla-extension-sentado",
+          "rodilla-flexion-sentado",
+          "cadera-abduccion-tumbado",
+          "puente",
+          "bici-estatica",
+        ],
       },
       {
         fromWeek: 6,
@@ -233,6 +283,7 @@ export const lower: Procedure[] = [
   },
   {
     id: "femur-distal",
+    code: 5,
     name: "Fractura de fémur distal (encima de la rodilla)",
     group: G_LEG,
     limb: "inferior",
@@ -280,6 +331,7 @@ export const lower: Procedure[] = [
   },
   {
     id: "rotula",
+    code: 6,
     name: "Fractura de rótula",
     group: G_LEG,
     limb: "inferior",
@@ -290,7 +342,8 @@ export const lower: Procedure[] = [
       {
         fromWeek: 0,
         title: "Proteger la rodilla",
-        summary: "Caminas con la ortesis bloqueada y la rodilla recta. Dobla la rodilla solo hasta donde te hayan indicado (suele ser 30-60°).",
+        summary:
+          "Caminas con la ortesis bloqueada y la rodilla recta. Dobla la rodilla solo hasta donde te hayan indicado (suele ser 30-60°).",
         goals: ["Controlar dolor e hinchazón", "Mantener activo el músculo del muslo"],
         allowed: ["Caminar con la ortesis y muletas", "Doblar la rodilla en los ejercicios hasta el límite indicado"],
         avoid: ["Doblar más de lo indicado", "Levantar la pierna estirada sin la ortesis", "Arrodillarte"],
@@ -327,6 +380,7 @@ export const lower: Procedure[] = [
   },
   {
     id: "meseta-tibial",
+    code: 7,
     name: "Fractura de meseta tibial (rodilla)",
     group: G_LEG,
     limb: "inferior",
@@ -376,6 +430,7 @@ export const lower: Procedure[] = [
   // ───────── Pierna, tobillo y pie ─────────
   {
     id: "tibia-diafisis",
+    code: 8,
     name: "Fractura de diáfisis de tibia (pierna)",
     group: G_FOOT,
     limb: "inferior",
@@ -423,6 +478,7 @@ export const lower: Procedure[] = [
   },
   {
     id: "tobillo",
+    code: 9,
     name: "Fractura de tobillo",
     group: G_FOOT,
     limb: "inferior",
@@ -470,6 +526,7 @@ export const lower: Procedure[] = [
   },
   {
     id: "pilon-tibial",
+    code: 10,
     name: "Fractura de pilón tibial",
     group: G_FOOT,
     limb: "inferior",
@@ -517,6 +574,7 @@ export const lower: Procedure[] = [
   },
   {
     id: "calcaneo",
+    code: 11,
     name: "Fractura de calcáneo (talón)",
     group: G_FOOT,
     limb: "inferior",
@@ -564,6 +622,7 @@ export const lower: Procedure[] = [
   },
   {
     id: "pie-metatarsianos",
+    code: 12,
     name: "Fractura del pie (metatarsianos / Lisfranc)",
     group: G_FOOT,
     limb: "inferior",

@@ -131,21 +131,24 @@ export function statusToday(proc: Procedure, r: Restrictions, surgery: string, d
       out.push({
         tone: "red",
         title: "No apoyes el pie operado",
-        detail: "Camina con muletas o andador sin cargar peso en la pierna operada. Puedes rozar el suelo con el pie para mantener el equilibrio.",
+        detail:
+          "Camina con muletas o andador sin cargar peso en la pierna operada. Puedes rozar el suelo con el pie para mantener el equilibrio.",
         until: dateAtWeek(surgery, nw),
       });
     } else if (week < pw) {
       out.push({
         tone: "amber",
         title: "Apoyo parcial con muletas",
-        detail: "Puedes apoyar parte de tu peso en la pierna operada, siempre con muletas o andador. Ve aumentando poco a poco si no hay dolor.",
+        detail:
+          "Puedes apoyar parte de tu peso en la pierna operada, siempre con muletas o andador. Ve aumentando poco a poco si no hay dolor.",
         until: dateAtWeek(surgery, pw),
       });
     } else {
       out.push({
         tone: "green",
         title: "Puedes apoyar el pie",
-        detail: "Apoya todo el peso que tolere tu pierna. Deja las muletas de forma progresiva (primero una, luego ninguna) cuando camines sin cojear.",
+        detail:
+          "Apoya todo el peso que tolere tu pierna. Deja las muletas de forma progresiva (primero una, luego ninguna) cuando camines sin cojear.",
       });
     }
   } else {

@@ -186,11 +186,7 @@ const list: Exercise[] = [
   {
     id: "rodilla-flexion-pie",
     name: "Doblar la rodilla de pie",
-    how: [
-      "De pie, sujetándote a una silla o encimera.",
-      "Dobla la rodilla llevando el talón hacia el glúteo.",
-      "Baja despacio.",
-    ],
+    how: ["De pie, sujetándote a una silla o encimera.", "Dobla la rodilla llevando el talón hacia el glúteo.", "Baja despacio."],
     dose: "10 repeticiones, 2 veces al día",
   },
   {
@@ -259,11 +255,7 @@ const list: Exercise[] = [
   {
     id: "tobillo-circulos",
     name: "Círculos con el tobillo",
-    how: [
-      "Sentado, con el pie en el aire.",
-      "Haz círculos amplios con el pie hacia un lado.",
-      "Luego hacia el otro lado.",
-    ],
+    how: ["Sentado, con el pie en el aire.", "Haz círculos amplios con el pie hacia un lado.", "Luego hacia el otro lado."],
     dose: "10 círculos a cada lado, 3 veces al día",
   },
   {
@@ -322,10 +314,7 @@ const list: Exercise[] = [
   {
     id: "dedos-pulgar",
     name: "Tocar cada dedo con el pulgar",
-    how: [
-      "Toca con la punta del pulgar la punta de cada dedo, uno a uno.",
-      "Haz el recorrido de ida y vuelta.",
-    ],
+    how: ["Toca con la punta del pulgar la punta de cada dedo, uno a uno.", "Haz el recorrido de ida y vuelta."],
     dose: "5 recorridos, 3-4 veces al día",
   },
   {
@@ -371,11 +360,7 @@ const list: Exercise[] = [
   {
     id: "pelota-apretar",
     name: "Apretar una pelota blanda",
-    how: [
-      "Coge una pelota blanda o una esponja.",
-      "Apriétala con toda la mano durante 3-5 segundos.",
-      "Suelta despacio.",
-    ],
+    how: ["Coge una pelota blanda o una esponja.", "Apriétala con toda la mano durante 3-5 segundos.", "Suelta despacio."],
     dose: "15 repeticiones, 2-3 veces al día",
   },
   {
@@ -392,11 +377,7 @@ const list: Exercise[] = [
   {
     id: "biceps-botella",
     name: "Doblar el codo con peso ligero",
-    how: [
-      "De pie o sentado, con una botella de agua en la mano.",
-      "Dobla el codo llevando la botella hacia el hombro.",
-      "Baja despacio.",
-    ],
+    how: ["De pie o sentado, con una botella de agua en la mano.", "Dobla el codo llevando la botella hacia el hombro.", "Baja despacio."],
     dose: "10-15 repeticiones, 1-2 veces al día",
   },
   {
@@ -414,11 +395,7 @@ const list: Exercise[] = [
   {
     id: "cuello",
     name: "Movilidad de cuello",
-    how: [
-      "Sentado con la espalda recta.",
-      "Gira la cabeza despacio a un lado y al otro.",
-      "Inclina la oreja hacia cada hombro.",
-    ],
+    how: ["Sentado con la espalda recta.", "Gira la cabeza despacio a un lado y al otro.", "Inclina la oreja hacia cada hombro."],
     dose: "5 veces cada movimiento, 3 veces al día",
   },
   {

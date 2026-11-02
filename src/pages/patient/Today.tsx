@@ -33,9 +33,7 @@ export default function Today({ ctx }: { ctx: PatientCtx }) {
   if (days < 0) {
     return (
       <div>
-        <h1 className="text-3xl leading-tight font-semibold text-slate-900">
-          Te operamos el {formatDate(config.d)}.
-        </h1>
+        <h1 className="text-3xl leading-tight font-semibold text-slate-900">Te operamos el {formatDate(config.d)}.</h1>
         <p className="mt-2 text-lg text-slate-600">
           Faltan {-days} {-days === 1 ? "día" : "días"}. Mientras tanto, puedes ir preparándote.
         </p>
@@ -57,48 +55,57 @@ export default function Today({ ctx }: { ctx: PatientCtx }) {
   const allDone = doneCount === phase.exercises.length;
 
   return (
-    <div>
-      <p className="text-slate-600">{sinceText(days)}</p>
-      <h1 className="mt-1 text-3xl leading-tight font-semibold text-slate-900">{phase.title}</h1>
-      <p className="mt-2 text-slate-700">{phase.summary}</p>
+    <div className="lg:grid lg:grid-cols-2 lg:gap-12">
+      <div>
+        <p className="text-slate-600">{sinceText(days)}</p>
+        <h1 className="mt-1 text-3xl leading-tight font-semibold text-slate-900 lg:text-4xl">{phase.title}</h1>
+        <p className="mt-2 text-slate-700">{phase.summary}</p>
 
-      <Card className="mt-5">
-        <RecoveryPath ctx={ctx} />
-      </Card>
+        <Card className="mt-5">
+          <RecoveryPath ctx={ctx} />
+        </Card>
 
-      <SectionTitle>Hoy debes saber</SectionTitle>
-      <div className="space-y-3">
-        {statusToday(proc, r, config.d, days).map((s) => (
-          <StatusCard key={s.title} s={s} />
-        ))}
-        {config.note && (
-          <div className="rounded-r-xl border-l-4 border-brand-600 bg-white p-4">
-            <p className="flex items-center gap-2 text-lg font-semibold text-slate-900">
-              <MessageSquareText className="size-5 text-brand-700" /> De tu cirujano
-            </p>
-            <p className="mt-1 whitespace-pre-line text-slate-700">{config.note}</p>
-          </div>
-        )}
-        {config.rev && revDays !== undefined && revDays <= 0 && (
-          <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4">
-            <CalendarClock className="size-6 shrink-0 text-brand-700" />
-            <p className="text-slate-700">
-              <span className="font-semibold text-slate-900">Revisión {revDays === 0 ? "hoy" : `el ${formatDate(config.rev)}`}</span>
-              {revDays < 0 && ` · dentro de ${-revDays} ${revDays === -1 ? "día" : "días"}`}
-            </p>
-          </div>
-        )}
+        <SectionTitle>Hoy debes saber</SectionTitle>
+        <div className="space-y-3">
+          {statusToday(proc, r, config.d, days).map((s) => (
+            <StatusCard key={s.title} s={s} />
+          ))}
+          {config.note && (
+            <div className="rounded-r-xl border-l-4 border-brand-600 bg-white p-4">
+              <p className="flex items-center gap-2 text-lg font-semibold text-slate-900">
+                <MessageSquareText className="size-5 text-brand-700" /> De tu cirujano
+              </p>
+              <p className="mt-1 whitespace-pre-line text-slate-700">{config.note}</p>
+            </div>
+          )}
+          {config.rev && revDays !== undefined && revDays <= 0 && (
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4">
+              <CalendarClock className="size-6 shrink-0 text-brand-700" />
+              <p className="text-slate-700">
+                <span className="font-semibold text-slate-900">Revisión {revDays === 0 ? "hoy" : `el ${formatDate(config.rev)}`}</span>
+                {revDays < 0 && ` · dentro de ${-revDays} ${revDays === -1 ? "día" : "días"}`}
+              </p>
+            </div>
+          )}
+        </div>
       </div>
 
-      <SectionTitle aside={allDone ? "Completados" : `${doneCount} de ${phase.exercises.length} hechos`}>Tus ejercicios de hoy</SectionTitle>
-      <ExerciseList ids={phase.exercises} done={todayDone} onToggle={toggle} />
-      {allDone ? (
-        <p className="mt-3 rounded-xl bg-brand-50 p-3 text-brand-900">Has hecho todos los ejercicios de hoy. Mañana, otra vez: la constancia es lo que más ayuda.</p>
-      ) : (
-        <p className="mt-3 text-sm text-slate-500">
-          Toca «Cómo» para ver los pasos. Si un ejercicio te causa un dolor fuerte que no se pasa al parar, déjalo y coméntalo en la revisión.
-        </p>
-      )}
+      <div>
+        <SectionTitle className="lg:mt-0" aside={allDone ? "Completados" : `${doneCount} de ${phase.exercises.length} hechos`}>
+          Tus ejercicios de hoy
+        </SectionTitle>
+        <ExerciseList ids={phase.exercises} done={todayDone} onToggle={toggle} />
+        {allDone ? (
+          <p className="mt-3 rounded-xl bg-brand-50 p-3 text-brand-900">
+            Has hecho todos los ejercicios de hoy. Mañana, otra vez: la constancia es lo que más ayuda.
+          </p>
+        ) : (
+          <p className="mt-3 text-sm text-slate-500">
+            Toca «Cómo» para ver los pasos. Si un ejercicio te causa un dolor fuerte que no se pasa al parar, déjalo y coméntalo en la
+            revisión.
+          </p>
+        )}
+      </div>
     </div>
   );
 }
