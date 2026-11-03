@@ -7,6 +7,7 @@ import { CLINIC } from "../data/clinic";
 import type { Procedure, Restrictions } from "../data/types";
 import { Button } from "../components/ui";
 import MedicoGate from "../components/MedicoGate";
+import EvidencePanel from "../components/EvidencePanel";
 import { dateAtWeek, formatDate, patientLink, todayKey, withArticle, type PatientConfig } from "../lib/config";
 import { encodeShort, shortCodeProblem } from "../lib/shortcode";
 import { useStored } from "../lib/storage";
@@ -215,6 +216,8 @@ function Planner({ onLock }: { onLock: () => void }) {
               </div>
             </Step>
 
+            <EvidencePanel procId={procId} />
+
             <Step n={2} title="Pauta postoperatoria" hint="Elige una pauta habitual o ajusta las semanas a mano.">
               <div className="flex flex-wrap gap-2">
                 <button onClick={() => setR(proc.defaults)} className={chip(protocolActive)}>
@@ -321,6 +324,7 @@ function Planner({ onLock }: { onLock: () => void }) {
                 </label>
               </div>
             </Step>
+            <EvidencePanel procId="general" title="Evidencia de los consejos generales" />
           </div>
 
           <aside className="lg:sticky lg:top-6 lg:self-start">

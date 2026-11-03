@@ -86,7 +86,7 @@ export const lower: Procedure[] = [
       },
       {
         q: "¿Podré arrodillarme?",
-        a: "Con el tiempo muchas personas pueden, aunque suele resultar incómodo. No te hará daño a la prótesis, pero espera a que la herida esté totalmente curada y la rodilla no duela.",
+        a: "Con el tiempo algunas personas lo consiguen, pero menos de la mitad se arrodilla con normalidad y a muchas les resulta incómodo; suele mejorar con los años. No te hará daño a la prótesis, pero espera a que la herida esté totalmente curada y la rodilla no duela.",
       },
       {
         q: "¿Tengo que tomar antibiótico si voy al dentista?",
@@ -119,7 +119,7 @@ export const lower: Procedure[] = [
         allowed: ["Caminar con andador apoyando lo que toleres (salvo otra indicación)", "Sentarte en sillas altas con reposabrazos"],
         avoid: [
           "Sillas bajas o sofás hundidos",
-          "Si te han puesto prótesis: cruzar las piernas o doblar mucho la cadera, salvo que te digan lo contrario",
+          "Si te han puesto prótesis: solo las posturas concretas que te indique tu equipo (dependen de cómo te hayan operado)",
         ],
         exercises: [
           "bombeo-tobillo",
@@ -144,6 +144,7 @@ export const lower: Procedure[] = [
           "cadera-abduccion-tumbado",
           "rodilla-extension-sentado",
           "caminar",
+          "equilibrio",
         ],
       },
       {
@@ -184,7 +185,7 @@ export const lower: Procedure[] = [
     limb: "inferior",
     intro:
       "Te han fijado una fractura de la pelvis o de la cavidad de la cadera (acetábulo). Suele necesitar un periodo sin apoyar o con poco apoyo, mientras mantienes el resto del cuerpo activo.",
-    defaults: { noWeightUntil: 6, partialUntil: 10 },
+    defaults: { noWeightUntil: 0, partialUntil: 12 },
     phases: [
       {
         fromWeek: 0,
@@ -197,15 +198,15 @@ export const lower: Procedure[] = [
       },
       {
         fromWeek: 6,
-        title: "Empezar a cargar",
-        summary: "Si las radiografías lo permiten, empiezas a apoyar de forma progresiva.",
+        title: "Aumentar la carga",
+        summary: "Si las radiografías lo permiten, vas aumentando el apoyo de forma progresiva.",
         goals: ["Aumentar el apoyo poco a poco", "Recuperar movilidad de la cadera"],
         allowed: ["Bicicleta estática sin resistencia", "Piscina si la herida está cerrada"],
         avoid: ["Cargar más peso del indicado"],
         exercises: ["cadera-abduccion-tumbado", "puente", "cadera-flexion-sentado", "rodilla-extension-sentado", "bici-estatica"],
       },
       {
-        fromWeek: 10,
+        fromWeek: 12,
         title: "Fuerza y marcha",
         summary: "Deja las muletas de forma progresiva y gana fuerza en la cadera.",
         goals: ["Caminar sin cojear", "Fuerza en la cadera"],
@@ -234,7 +235,7 @@ export const lower: Procedure[] = [
     limb: "inferior",
     intro:
       "Te han colocado un clavo dentro del fémur. Este tipo de fijación es muy resistente y muchas veces permite apoyar pronto. El hueso tarda unos 3-4 meses en soldar.",
-    defaults: { noWeightUntil: 0, partialUntil: 6 },
+    defaults: { noWeightUntil: 0, partialUntil: 0 },
     phases: [
       {
         fromWeek: 0,
@@ -289,12 +290,12 @@ export const lower: Procedure[] = [
     limb: "inferior",
     intro:
       "Te han fijado una fractura del fémur junto a la rodilla. Hay que proteger el apoyo unas semanas, pero mover la rodilla desde pronto evita que se quede rígida.",
-    defaults: { noWeightUntil: 6, partialUntil: 10 },
+    defaults: { noWeightUntil: 0, partialUntil: 6 },
     phases: [
       {
         fromWeek: 0,
         title: "Proteger y mover la rodilla",
-        summary: "Muletas sin apoyar o con el apoyo indicado. Mueve la rodilla dentro de lo que toleres.",
+        summary: "Muletas con el apoyo que te hayan indicado. Mueve la rodilla dentro de lo que toleres.",
         goals: ["Rodilla completamente estirada", "Doblar la rodilla 90°", "Prevenir trombos"],
         allowed: ["Mover la rodilla sin peso"],
         avoid: ["Cargar más peso del indicado"],
@@ -302,7 +303,7 @@ export const lower: Procedure[] = [
       },
       {
         fromWeek: 6,
-        title: "Empezar a cargar",
+        title: "Aumentar la carga",
         summary: "Si la radiografía lo permite, aumentas el apoyo poco a poco.",
         goals: ["Doblar la rodilla más de 110°", "Aumentar el apoyo"],
         allowed: ["Bicicleta estática sin resistencia"],
@@ -386,7 +387,7 @@ export const lower: Procedure[] = [
     limb: "inferior",
     intro:
       "Te han fijado una fractura de la parte alta de la tibia, dentro de la rodilla. Hay que proteger el apoyo unas semanas, pero mover la rodilla desde pronto es fundamental.",
-    defaults: { noWeightUntil: 6, partialUntil: 10 },
+    defaults: { noWeightUntil: 0, partialUntil: 6 },
     phases: [
       {
         fromWeek: 0,
@@ -399,7 +400,7 @@ export const lower: Procedure[] = [
       },
       {
         fromWeek: 6,
-        title: "Empezar a cargar",
+        title: "Aumentar la carga",
         summary: "Si la radiografía lo permite, aumentas el apoyo poco a poco.",
         goals: ["Doblar más de 110°", "Aumentar el apoyo"],
         allowed: ["Bicicleta estática sin resistencia"],
@@ -435,8 +436,8 @@ export const lower: Procedure[] = [
     group: G_FOOT,
     limb: "inferior",
     intro:
-      "Te han fijado la tibia, normalmente con un clavo. El hueso tarda unos 3-4 meses en soldar. Mover rodilla y tobillo desde el principio ayuda mucho a la recuperación.",
-    defaults: { noWeightUntil: 0, partialUntil: 6 },
+      "Te han fijado la tibia, normalmente con un clavo. El hueso suele tardar entre 4 y 6 meses en soldar. Mover rodilla y tobillo desde el principio ayuda mucho a la recuperación.",
+    defaults: { noWeightUntil: 0, partialUntil: 0 },
     phases: [
       {
         fromWeek: 0,
@@ -484,7 +485,7 @@ export const lower: Procedure[] = [
     limb: "inferior",
     intro:
       "Te han fijado la fractura del tobillo con placa y/o tornillos. Las primeras semanas son clave para controlar la hinchazón: pierna elevada por encima del corazón el mayor tiempo posible.",
-    defaults: { noWeightUntil: 2, partialUntil: 6, device: "bota o férula", deviceUntil: 6 },
+    defaults: { noWeightUntil: 2, partialUntil: 2, device: "bota o férula", deviceUntil: 6 },
     phases: [
       {
         fromWeek: 0,
@@ -660,7 +661,7 @@ export const lower: Procedure[] = [
       {
         fromWeek: 12,
         title: "Vuelta a la normalidad",
-        summary: "Vuelta progresiva a tus actividades y deporte.",
+        summary: "Vuelta progresiva a tus actividades. El deporte suele retomarse entre los 4 y 6 meses, cuando te lo autoricen.",
         goals: ["Caminar con normalidad"],
         allowed: ["Deporte progresivo cuando te lo autoricen"],
         avoid: ["Saltos sin autorización"],

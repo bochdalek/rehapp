@@ -40,9 +40,14 @@ Todo el contenido está en `src/data/` y se puede editar sin tocar la interfaz:
 | `procedures/lower.ts` | Prótesis de rodilla, cadera, pelvis/acetábulo, fémur, rótula, meseta tibial, tibia, tobillo, pilón, calcáneo, pie |
 | `exercises.ts` | Biblioteca de ejercicios explicados para pacientes |
 | `general.ts` | Señales de alarma y preguntas frecuentes generales |
+| `evidence.ts` | Resumen de la evidencia y referencias de PubMed de cada protocolo |
 | `templates.ts` | Pautas postoperatorias habituales (carga/descarga, inmovilización) |
 
-> ⚠️ Los protocolos son orientativos y deben ser revisados por el equipo quirúrgico antes de usarse con pacientes.
+Los protocolos se revisaron en PubMed en noviembre de 2026 (`evidence.ts`): para cada uno hay un resumen de la evidencia,
+su nivel de certeza, las lagunas que quedan a criterio del cirujano y las referencias comprobadas (PMID y DOI). Se ven en el
+modo médico, en «Evidencia de este protocolo».
+
+> ⚠️ Los protocolos son orientativos: la evidencia es en general baja y el cirujano ajusta la pauta a cada paciente.
 
 ## Desarrollo
 

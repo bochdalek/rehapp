@@ -92,7 +92,13 @@ export default function Welcome({ onDemo }: { onDemo: (c: PatientConfig) => void
           </li>
         ))}
       </ol>
-      <p className="mt-6 text-sm text-slate-500">Lo que anotes se guarda solo en tu móvil.</p>
+      <p className="mt-6 text-sm text-slate-500">
+        Lo que anotes se guarda solo en tu móvil. El contenido está contrastado con estudios científicos:{" "}
+        <a href="#/fuentes" className="font-semibold text-brand-700 underline">
+          ver las fuentes
+        </a>
+        .
+      </p>
 
       <div className="mt-auto flex flex-col gap-2 pt-8">
         <Button variant="secondary" onClick={demo}>

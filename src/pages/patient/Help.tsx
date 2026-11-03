@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, Siren, Hospital, ShieldCheck, Stethoscope } from "lucide-react";
+import { BookOpen, ChevronDown, ChevronRight, Siren, Hospital, ShieldCheck, Stethoscope } from "lucide-react";
 import { alarms, GENERAL_FAQ } from "../../data/general";
 import { Button, Card, SectionTitle } from "../../components/ui";
 import type { PatientCtx } from "../../lib/patient";
@@ -73,6 +73,15 @@ export default function Help({ ctx, onReset }: { ctx: PatientCtx; onReset: () =>
             );
           })}
         </Card>
+
+        <a href="#/fuentes" className="mt-6 flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4">
+          <BookOpen className="size-6 shrink-0 text-brand-700" />
+          <span className="flex-1">
+            <span className="block font-semibold text-slate-900">De dónde sale esta información</span>
+            <span className="block text-sm text-slate-500">Los estudios científicos en los que se basa tu plan</span>
+          </span>
+          <ChevronRight className="size-5 text-slate-400" />
+        </a>
 
         <SectionTitle>Tus datos</SectionTitle>
         <Card>
