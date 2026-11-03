@@ -37,7 +37,11 @@ export default function PatientApp({ config, proc, route, onReset }: Props) {
         </p>
         <p className="font-display mt-4 text-xl leading-snug font-semibold text-slate-900">{proc.name}</p>
         <p className="mt-1 text-sm text-slate-500">
-          {config.s && <span className="capitalize">{sideLabel(config.s)} · </span>}
+          {config.s && (
+            <>
+              <span className="inline-block first-letter:uppercase">{sideLabel(config.s)}</span> ·{" "}
+            </>
+          )}
           Operado el {formatDate(config.d)}
         </p>
         <nav className="mt-8 space-y-1">
@@ -79,7 +83,7 @@ export default function PatientApp({ config, proc, route, onReset }: Props) {
         </main>
 
         {/* Móvil: barra inferior */}
-        <nav className="pb-safe fixed inset-x-0 bottom-0 z-10 border-t border-slate-200 bg-white lg:hidden">
+        <nav className="pb-safe fixed inset-x-0 bottom-0 z-10 border-t border-slate-200 bg-white/95 shadow-[0_-4px_16px_rgb(0_0_0/0.04)] backdrop-blur lg:hidden">
           <div className="mx-auto grid max-w-lg grid-cols-4">
             {TABS.map(({ path, label, icon: Icon }) => {
               const active = tab === path;
@@ -87,11 +91,12 @@ export default function PatientApp({ config, proc, route, onReset }: Props) {
                 <button
                   key={path}
                   onClick={() => navigate(path)}
-                  className={`relative flex flex-col items-center gap-0.5 py-2 text-sm ${active ? "font-semibold text-brand-800" : "text-slate-500"}`}
+                  className={`flex flex-col items-center gap-1 pt-2 pb-1.5 text-sm ${active ? "font-semibold text-brand-800" : "text-slate-500"}`}
                   aria-current={active ? "page" : undefined}
                 >
-                  {active && <span className="absolute inset-x-6 top-0 h-1 rounded-b bg-brand-700" />}
-                  <Icon className="size-6" strokeWidth={active ? 2.4 : 1.8} />
+                  <span className={`grid h-8 w-14 place-items-center rounded-full transition-colors ${active ? "bg-brand-100" : ""}`}>
+                    <Icon className="size-6" strokeWidth={active ? 2.4 : 1.8} />
+                  </span>
                   {label}
                 </button>
               );

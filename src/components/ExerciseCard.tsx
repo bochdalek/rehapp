@@ -62,7 +62,7 @@ function ExerciseRow({ ex, done, onToggle }: RowProps) {
 /** Lista de ejercicios: con casillas si se pasan `done` y `onToggle` */
 export default function ExerciseList({ ids, done, onToggle }: { ids: string[]; done?: string[]; onToggle?: (id: string) => void }) {
   return (
-    <ul className="divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white px-4">
+    <ul className="divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white px-4 shadow-sm shadow-slate-900/5">
       {ids.map((id) => (
         <ExerciseRow key={id} ex={getExercise(id)} done={done?.includes(id)} onToggle={onToggle ? () => onToggle(id) : undefined} />
       ))}

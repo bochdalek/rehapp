@@ -94,9 +94,22 @@ export default function Today({ ctx }: { ctx: PatientCtx }) {
         <SectionTitle className="lg:mt-0" aside={allDone ? "Completados" : `${doneCount} de ${phase.exercises.length} hechos`}>
           Tus ejercicios de hoy
         </SectionTitle>
+        <div
+          className="mb-3 h-2 overflow-hidden rounded-full bg-slate-200"
+          role="progressbar"
+          aria-label="Ejercicios hechos hoy"
+          aria-valuemin={0}
+          aria-valuemax={phase.exercises.length}
+          aria-valuenow={doneCount}
+        >
+          <div
+            className={`h-full rounded-full transition-[width] duration-500 ${allDone ? "bg-emerald-600" : "bg-brand-600"}`}
+            style={{ width: `${(doneCount / phase.exercises.length) * 100}%` }}
+          />
+        </div>
         <ExerciseList ids={phase.exercises} done={todayDone} onToggle={toggle} />
         {allDone ? (
-          <p className="mt-3 rounded-xl bg-brand-50 p-3 text-brand-900">
+          <p className="mt-3 rounded-xl bg-emerald-50 p-3 text-emerald-900">
             Has hecho todos los ejercicios de hoy. Mañana, otra vez: la constancia es lo que más ayuda.
           </p>
         ) : (
