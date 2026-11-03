@@ -1,4 +1,10 @@
 import type { ReactNode } from "react";
+import logoUrl from "../assets/logo.webp";
+
+/** Logo de RehApp (icono redondeado con el nombre). Decorativo salvo que se pida texto alternativo. */
+export function Logo({ className = "size-10", alt = "" }: { className?: string; alt?: string }) {
+  return <img src={logoUrl} alt={alt} aria-hidden={alt ? undefined : true} className={`shrink-0 ${className}`} />;
+}
 
 export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
   return <div className={`rounded-xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-900/5 ${className}`}>{children}</div>;

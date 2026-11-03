@@ -6,7 +6,7 @@
 
 /*
   Sistema visual de RehApp
-  - Color principal: azul profundo, sereno y de confianza. No se confunde con los colores
+  - Color principal: el azul del logo, sereno y de confianza; el turquesa del logo, solo como acento. No se confunde con los colores
     de seguridad (rojo / ámbar / verde), que se reservan para "no puedes", "con cuidado" y "puedes".
   - Grises neutros con un toque frío, fondo limpio.
   - Atkinson Hyperlegible Next para leer (diseñada para baja visión: ideal para pacientes mayores).
@@ -16,16 +16,21 @@
   --font-sans: "Atkinson Hyperlegible Next", system-ui, sans-serif;
   --font-display: "Fraunces Variable", Georgia, serif;
 
-  --color-brand-50: #eff5fb;
-  --color-brand-100: #dce8f5;
-  --color-brand-200: #b9d1ea;
-  --color-brand-300: #8bb2db;
-  --color-brand-400: #5a8ec7;
-  --color-brand-500: #3a72b0;
-  --color-brand-600: #2b5d96;
-  --color-brand-700: #224b7c;
-  --color-brand-800: #1b3c63;
-  --color-brand-900: #132a47;
+  --color-brand-50: #eef6fd;
+  --color-brand-100: #d8eafa;
+  --color-brand-200: #b0d3f3;
+  --color-brand-300: #7fb4e8;
+  --color-brand-400: #4a8fd6;
+  --color-brand-500: #2370bf;
+  --color-brand-600: #0e5aa6;
+  --color-brand-700: #0a4a8c;
+  --color-brand-800: #083c72;
+  --color-brand-900: #062b53;
+
+  /* Turquesa del logo: solo como acento decorativo (degradados), nunca para avisos */
+  --color-accent-400: #2fd3dc;
+  --color-accent-500: #0eaabb;
+  --color-accent-600: #0a8aa0;
 
   --color-slate-50: #f5f7f9;
   --color-slate-100: #eceff3;

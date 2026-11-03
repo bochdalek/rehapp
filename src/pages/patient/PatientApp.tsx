@@ -2,6 +2,7 @@ import { CalendarDays, Activity, LifeBuoy, Sun } from "lucide-react";
 import type { Procedure } from "../../data/types";
 import { formatDate, type PatientConfig } from "../../lib/config";
 import { navigate } from "../../lib/router";
+import { Logo } from "../../components/ui";
 import { buildCtx, sideLabel } from "../../lib/patient";
 import Today from "./Today";
 import Plan from "./Plan";
@@ -32,8 +33,8 @@ export default function PatientApp({ config, proc, route, onReset }: Props) {
     <div className="min-h-dvh lg:flex">
       {/* Ordenador: menú lateral */}
       <aside className="sticky top-0 hidden h-dvh w-72 shrink-0 flex-col border-r border-slate-200 bg-white px-6 py-8 lg:flex">
-        <p className="flex items-center gap-2 font-semibold text-brand-700">
-          <span className="size-3 rotate-45 bg-brand-700" aria-hidden="true" /> {greeting}
+        <p className="flex items-center gap-3 font-semibold text-brand-700">
+          <Logo className="size-11" /> {greeting}
         </p>
         <p className="font-display mt-4 text-xl leading-snug font-semibold text-slate-900">{proc.name}</p>
         <p className="mt-1 text-sm text-slate-500">
@@ -67,12 +68,12 @@ export default function PatientApp({ config, proc, route, onReset }: Props) {
 
       <div className="flex min-h-dvh flex-1 flex-col">
         {/* Móvil: cabecera */}
-        <header className="flex items-start justify-between gap-3 border-b border-slate-200 px-4 pt-5 pb-3 lg:hidden">
+        <header className="flex items-center gap-3 border-b border-slate-200 px-4 pt-4 pb-3 lg:hidden">
+          <Logo className="size-11" />
           <div>
             <p className="font-semibold text-brand-700">{greeting}</p>
             <p className="text-sm text-slate-500">{subtitle}</p>
           </div>
-          <span className="mt-1 size-3 shrink-0 rotate-45 bg-brand-700" aria-hidden="true" />
         </header>
 
         <main className="mx-auto w-full max-w-lg flex-1 px-4 pt-5 pb-28 lg:max-w-6xl lg:px-12 lg:pt-12 lg:pb-16">

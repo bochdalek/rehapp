@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { Camera, KeyRound } from "lucide-react";
-import { Button } from "../components/ui";
+import { Button, Logo } from "../components/ui";
 import { todayKey, type PatientConfig } from "../lib/config";
 import { decodeShort } from "../lib/shortcode";
 
@@ -30,16 +30,14 @@ export default function Welcome({ onDemo }: { onDemo: (c: PatientConfig) => void
 
   return (
     <main className="mx-auto flex min-h-dvh max-w-lg flex-col px-4 py-8">
-      <p className="flex items-center gap-2 font-semibold text-brand-700">
-        <span className="size-3 rotate-45 bg-brand-700" aria-hidden="true" /> RehApp
-      </p>
+      <Logo className="size-24 drop-shadow-md" alt="RehApp" />
 
-      <h1 className="mt-8 text-4xl leading-tight font-semibold text-slate-900">Tu recuperación, semana a semana.</h1>
+      <h1 className="mt-6 text-4xl leading-tight font-semibold text-slate-900">Tu recuperación, semana a semana.</h1>
       <p className="mt-3 text-lg text-slate-600">
         Una guía para después de tu operación de fractura o de prótesis de rodilla, preparada por tu cirujano.
       </p>
 
-      <div className="mt-6 rounded-xl bg-brand-700 p-4 text-white">
+      <div className="mt-6 rounded-xl bg-linear-to-br from-brand-800 via-brand-700 to-accent-600 p-4 text-white shadow-md shadow-brand-900/15">
         <p className="flex gap-3">
           <Camera className="mt-0.5 size-6 shrink-0" />
           <span>

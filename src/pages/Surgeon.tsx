@@ -5,7 +5,7 @@ import { getProcedure, groupedProcedures, PROCEDURES } from "../data/procedures"
 import { PATTERNS, type SavedTemplate } from "../data/templates";
 import { CLINIC } from "../data/clinic";
 import type { Procedure, Restrictions } from "../data/types";
-import { Button } from "../components/ui";
+import { Button, Logo } from "../components/ui";
 import MedicoGate from "../components/MedicoGate";
 import EvidencePanel from "../components/EvidencePanel";
 import { dateAtWeek, formatDate, patientLink, todayKey, withArticle, type PatientConfig } from "../lib/config";
@@ -147,7 +147,7 @@ function Planner({ onLock }: { onLock: () => void }) {
       <header className="no-print border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
           <p className="flex items-center gap-2 font-semibold text-brand-700">
-            <span className="size-3 rotate-45 bg-brand-700" aria-hidden="true" /> RehApp · equipo médico
+            <Logo className="size-9" /> RehApp · equipo médico
           </p>
           <button onClick={onLock} className="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-slate-900">
             <LogOut className="size-4" /> Cerrar sesión
