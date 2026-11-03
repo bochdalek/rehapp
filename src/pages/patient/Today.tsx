@@ -103,7 +103,7 @@ export default function Today({ ctx }: { ctx: PatientCtx }) {
           aria-valuenow={doneCount}
         >
           <div
-            className={`h-full rounded-full transition-[width] duration-500 ${allDone ? "bg-emerald-600" : "bg-brand-600"}`}
+            className={`h-full rounded-full transition-[width] duration-500 ${allDone ? "bg-emerald-600" : "bg-linear-to-r from-brand-600 to-accent-500"}`}
             style={{ width: `${(doneCount / phase.exercises.length) * 100}%` }}
           />
         </div>
